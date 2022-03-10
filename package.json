@@ -1,0 +1,55 @@
+{
+  "name": "root",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "bootstrap": "lerna bootstrap && lerna link",
+    "clean": "lerna run clean --parallel",
+    "build-all": "sh ./scripts/build.sh",
+    "build-sdk": "yarn workspace @rarible/immutable-sdk run build",
+    "build-wallet": "yarn workspace @rarible/immutable-wallet run build",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx .",
+    "lint:fix": "eslint --ext .js,.jsx,.ts,.tsx . --fix",
+    "release": "lerna publish from-package",
+    "prettify:packages": "lerna exec -- sort-package-json && sort-package-json",
+    "prettify": "run-s prettify:*",
+    "test": "lerna run test --stream",
+    "verify": "lerna run verify --parallel",
+    "lint-staged": "lint-staged",
+    "publish-all": "lerna publish from-package",
+    "prepare": "husky install",
+    "precommit": "run-s verify lint"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "lint-staged": {
+    "**/src/package.json": [
+      "yarn run prettify:packages"
+    ],
+    "package.json": [
+      "yarn run prettify:packages"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.15.0",
+    "@commitlint/cli": "^13.1.0",
+    "@commitlint/config-conventional": "^13.1.0",
+    "@rarible/eslint-config-ts": "~0.1.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "husky": "^7.0.4",
+    "lerna": "^4.0.0",
+    "lint-staged": "^10.4.0",
+    "npm-run-all": "^4.1.5",
+    "prettier": "^2.1.2",
+    "sort-package-json": "^1.50.0",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.4"
+  }
+}
