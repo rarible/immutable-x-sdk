@@ -1,4 +1,4 @@
-import { ImmutableEnvConfig } from "./domain"
+import type { ImmutableEnvConfig } from "./domain"
 
 export const IMMUTABLE_ENV_CONFIG: ImmutableEnvConfig = {
 	e2e: {

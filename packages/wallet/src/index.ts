@@ -1,4 +1,4 @@
-import { Link } from "@imtbl/imx-link-sdk"
+import type { Link } from "@imtbl/imx-link-sdk"
 
 // const link = new Link('https://link.ropsten.x.immutable.com')
 
@@ -17,6 +17,7 @@ export class ImmutableWalletConnector {
 	public async connect(): Promise<ReturnType<Link["setup"]>> {
 		return this.walletLink.setup({})
 	}
+
 	//balance
 	//signMessage
 }

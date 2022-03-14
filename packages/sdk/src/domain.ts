@@ -1,5 +1,6 @@
-import { Link } from "@imtbl/imx-link-sdk"
-import { Address, BigNumber, Erc721AssetType } from "@rarible/ethereum-api-client"
+import type { Link } from "@imtbl/imx-sdk"
+import type { TransferRequest, TransferResponse } from "./nft/domain"
+import type { BuyRequest, BuyResponse, CancelOrderRequest, SellRequest } from "./order/domain"
 
 export type ImmutableEnvConfig = Record<"e2e" | "dev" | "staging" | "prod", {
 	linkAddress: string
@@ -7,31 +8,7 @@ export type ImmutableEnvConfig = Record<"e2e" | "dev" | "staging" | "prod", {
 	raribleApiAddress: string
 }>
 
-export type TransferRequest = {
-	asset: Erc721AssetType,
-	to: Address
-}
-
-export type SellRequest = {
-	contract: Address
-	tokenId: string
-	amount: BigNumber
-}
-export type BuyRequest = {
-	orderIds: string[]
-}
-export type CancelOrderRequest = {
-	orderId: string
-}
-
-export type BuyResponse = {
-	result: {
-		[x: string]: {
-			status: "success" | "error";
-			message: "success" | "error";
-		};
-	}
-}
+export type ImtblxFee = { recipient: string, percentage: number }
 
 export type ImmutableBlockchainTx = void
 
@@ -46,7 +23,7 @@ export type ImmutableOrderSdk = {
 }
 
 export type ImmutableNftSdk = {
-	transfer(request: TransferRequest): Promise<ImmutableBlockchainTx>
+	transfer(request: TransferRequest): Promise<TransferResponse>
 }
 
 export type RaribleImmutableSdk = {
