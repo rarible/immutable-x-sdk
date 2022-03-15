@@ -1,14 +1,14 @@
 import { Link } from "@imtbl/imx-sdk"
 import { IMMUTABLE_ENV_CONFIG } from "./config"
-import type { ImmutableEnvConfig, RaribleImmutableSdk } from "./domain"
+import type { ImxEnvConfig, RaribleImxSdk } from "./domain"
 import { transfer } from "./nft"
 import { buy, cancel, sell } from "./order"
 
-export function wallet(env: keyof ImmutableEnvConfig): Link {
+export function wallet(env: keyof ImxEnvConfig): Link {
 	return new Link(IMMUTABLE_ENV_CONFIG[env].linkAddress)
 }
 
-export function immutableSdk(wallet: Link): RaribleImmutableSdk {
+export function immutableSdk(wallet: Link): RaribleImxSdk {
 	return {
 		nft: {
 			transfer: transfer.bind(null, wallet),

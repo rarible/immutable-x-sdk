@@ -1,6 +1,6 @@
-import type { ImmutableEnvConfig } from "./domain"
+import type { ImxEnvConfig } from "./domain"
 
-export const IMMUTABLE_ENV_CONFIG: ImmutableEnvConfig = {
+export const IMMUTABLE_ENV_CONFIG: ImxEnvConfig = {
 	e2e: {
 		linkAddress: "",
 		apiAddress: "",
