@@ -17,8 +17,13 @@
     "verify": "tsc --noEmit"
   },
   "dependencies": {
+    "@imtbl/imx-link-sdk": "^2.0.25",
+    "@imtbl/imx-sdk": "^1.7.0"
   },
   "devDependencies": {
+    "@rarible/ethereum-api-client": "^0.1.20",
+    "@rarible/types": "~0.8.0",
+    "@rarible/utils": "~0.8.0",
     "@types/jest": "^27.0.2",
     "jest": "^27.2.0",
     "ts-jest": "^27.0.5",
