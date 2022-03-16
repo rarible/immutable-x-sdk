@@ -1,6 +1,6 @@
 import type { Part } from "@rarible/ethereum-api-client"
-import type { ImtblxFee } from "../domain"
+import type { ImxFee } from "../domain"
 
-export function convertFees(fee: Part[]): ImtblxFee[] {
+export function convertFees(fee: Part[]): ImxFee[] {
 	return fee.map(f => ({ recipient: f.account, percentage: f.value }))
 }
