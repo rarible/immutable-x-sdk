@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.1-alpha.1](https://github.com/rarible/immutable-x-sdk/compare/v0.0.1-alpha.0...v0.0.1-alpha.1) (2022-03-16)
+
+
+### Bug Fixes
+
+* add balances, fix types ([458ce38](https://github.com/rarible/immutable-x-sdk/commit/458ce38af579320a0be2b910e0fa77ccd3aa9f4a))
+
+
+
+
+
 ## 0.0.1-alpha.0 (2022-03-16)
 
 

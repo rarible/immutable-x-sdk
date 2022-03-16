@@ -1,6 +1,6 @@
 {
   "name": "@rarible/immutable-sdk",
-  "version": "0.0.1-alpha.0",
+  "version": "0.0.1-alpha.1",
   "description": "SDK for interact with immutable blockchain and Rarible protocol",
   "repository": "https://github.com/rarible/",
   "license": "MIT",
@@ -15,8 +15,6 @@
     "clean": "rimraf ./build",
     "test": "jest --passWithNoTests",
     "verify": "tsc --noEmit"
-  },
-  "dependencies": {
   },
   "devDependencies": {
     "@imtbl/imx-link-sdk": "^2.0.25",
