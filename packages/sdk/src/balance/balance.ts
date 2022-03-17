@@ -1,5 +1,5 @@
 import type { Address } from "@rarible/types"
-import type { Erc20AssetType, EthAssetType } from "@rarible/ethereum-api-client/build/models/AssetType"
+import type { Erc20AssetType, EthAssetType } from "@rarible/ethereum-api-client"
 import type { BigNumberValue } from "@rarible/utils"
 import { toBn } from "@rarible/utils"
 import type { ImxBalanceControllerApi } from "../apis"
