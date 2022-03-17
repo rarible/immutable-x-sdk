@@ -14,6 +14,6 @@ export class ImxBalances {
 	async getBalance(address: Address, assetType: BalanceRequestAssetType): Promise<BigNumberValue> {
 		const { result } = await this.apis.getAllBalances({ ownerAddress: address })
 		const ethBalance = result.find(b => b.symbol === assetType.assetClass)
-		return toBn(ethBalance?.balance.toString()!)
+		return ethBalance ? toBn(ethBalance?.balance.toString()!) : toBn("0")
 	}
 }

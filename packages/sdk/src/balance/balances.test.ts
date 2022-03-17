@@ -8,5 +8,8 @@ describe("test imx balances", () => {
 	test("should get balance", async () => {
 		const ethBalance = await sdk.balance.getBalance(toAddress(address), { assetClass: "ETH" })
 		expect(parseInt(ethBalance.toString())).toBeGreaterThanOrEqual(0)
+		// @ts-ignore
+		const nonExistableBalance = await sdk.balance.getBalance(toAddress(address), { assetClass: "NONEXIST" })
+		expect(parseInt(nonExistableBalance.toString())).toEqual(0)
 	})
 })
