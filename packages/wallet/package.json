@@ -17,6 +17,7 @@
     "verify": "tsc --noEmit"
   },
   "dependencies": {
+    "@imtbl/imx-link-sdk": "^2.0.25"
   },
   "devDependencies": {
     "@types/jest": "^27.0.2",
