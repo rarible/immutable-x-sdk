@@ -1,7 +1,7 @@
 import { Link } from "@imtbl/imx-sdk"
 import { IMMUTABLE_ENV_CONFIG } from "./config"
 import type { ImxEnv, ImxRoot, RaribleImxSdk } from "./domain"
-import { transfer } from "./nft"
+import { transfer } from "./nft/transfer"
 import { buy, cancel, sell } from "./order"
 import { Configuration, ImxBalanceControllerApi } from "./apis"
 import { ImxBalances } from "./balance/balance"
