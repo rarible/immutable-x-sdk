@@ -3,6 +3,22 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-alpha.0](https://github.com/compare/v0.0.1-alpha.4...v0.0.2-alpha.0) (2022-03-22)
+
+
+### Bug Fixes
+
+* remove extra code, husky hook ([77befae](https://github.com/commit/77befae2c8d4b9999bb90eb28649afdbd220edc4))
+
+
+### Features
+
+* refactor sdk with ethereum wallet ([c190a4e](https://github.com/commit/c190a4e7ea6ad4d2b0b15215b8d99e0871416cb5))
+
+
+
+
+
 ## [0.0.1-alpha.4](https://github.com/compare/v0.0.1-alpha.3...v0.0.1-alpha.4) (2022-03-17)
 
 
