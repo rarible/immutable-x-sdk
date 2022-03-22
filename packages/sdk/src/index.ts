@@ -22,9 +22,10 @@ export function createImxSdk(
 	env: ImxEnv,
 	starkKey: Maybe<string>,
 ): RaribleImxSdk {
-	const apiConfig = new Configuration({ basePath: IMMUTABLE_ENV_CONFIG[env].apiAddressV2 })
-	const balancesSdk = new ImxBalances(new ImxBalanceControllerApi(apiConfig))
-	const userSdk = new ImxUser(new ImxUserControllerApi(apiConfig))
+	const balanceApiConfig = new Configuration({ basePath: IMMUTABLE_ENV_CONFIG[env].apiAddressV2 })
+	const balancesSdk = new ImxBalances(new ImxBalanceControllerApi(balanceApiConfig))
+	const defaultApiConfig = new Configuration({ basePath: IMMUTABLE_ENV_CONFIG[env].apiAddressV2 })
+	const userSdk = new ImxUser(new ImxUserControllerApi(defaultApiConfig))
 	const configuredLink = new Link(IMMUTABLE_ENV_CONFIG[env].linkAddress)
 	return {
 		nft: {

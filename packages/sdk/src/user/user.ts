@@ -11,7 +11,7 @@ export class ImxUser {
 	}
 
 	async getUserStarkKeys(address: Address): Promise<string[]> {
-		return await this.apis.getImxUserStarkKeys({ address })
+		return (await this.apis.getImxUserStarkKeys({ address })).accounts
 	}
 
 	async checkUserIsRegistered(address: Address, starkKey: string): Promise<boolean> {

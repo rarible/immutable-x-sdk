@@ -5,7 +5,9 @@ export interface GetImxUserStarkKeysRequest {
 	address: string;
 }
 
-export type GetImxUserStarkKeysResponse = string[]
+export interface GetImxUserStarkKeysResponse {
+	accounts: string[]
+}
 
 
 export class ImxUserControllerApi extends runtime.BaseAPI {
