@@ -7,6 +7,7 @@ import type { ImxBlockchainTx } from "../domain"
 import type { ImxUser } from "../user/user"
 import { prepareMethod } from "../common/run-with-imx-auth"
 import type { BuyRequest, BuyResponse, CancelOrderRequest, SellRequest } from "./domain"
+import type { SellResponse } from "./domain"
 
 export async function sell(
 	ethereum: Maybe<Ethereum>,
@@ -14,7 +15,7 @@ export async function sell(
 	userSdk: ImxUser,
 	starkKey: Maybe<string>,
 	request: SellRequest,
-): Promise<ImxBlockchainTx> {
+): Promise<SellResponse> {
 	if (ethereum === undefined) {
 		throw new Error("Wallet undefined")
 	}
@@ -29,9 +30,7 @@ export async function sell(
 		tokenAddress: contract,
 		fees: convertFees([...payouts, ...originFees]),
 		currencyAddress: currencyContract,
-	})
-
-
+	}) as unknown as SellResponse
 }
 
 export async function buy(

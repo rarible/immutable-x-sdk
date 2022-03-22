@@ -23,6 +23,10 @@ export type CancelOrderRequest = {
 	orderId: string
 }
 
+export interface SellResponse {
+	orderId: number
+}
+
 export type BuyResponse = {
 	result: { [x: string]: { status: "success" } | { status: "error", message: string } }
 }
