@@ -1,1 +1,3 @@
-Immutable sdk
+## Rarible ImmutableX SDK
+
+Full documentation
