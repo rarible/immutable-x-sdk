@@ -15,18 +15,20 @@ export type OrderRequest = {
 	originFees: Part[]
 }
 
+export interface SellResponse {
+	orderId: number
+}
+
 export type BuyRequest = {
 	orderIds: string[]
 	fee: Part[]
+}
+export type BuyResponse = {
+	result: { [x: string]: { status: "success" } | { status: "error", message: string } }
 }
 export type CancelOrderRequest = {
 	orderId: string
 }
 
-export interface SellResponse {
-	orderId: number
-}
-
-export type BuyResponse = {
-	result: { [x: string]: { status: "success" } | { status: "error", message: string } }
+export interface CancelOrderResponse extends CancelOrderRequest {
 }

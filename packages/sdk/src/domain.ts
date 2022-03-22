@@ -2,7 +2,14 @@ import type { Link } from "@imtbl/imx-sdk"
 import type { Address } from "@rarible/types"
 import type { BigNumberValue } from "@rarible/utils"
 import type { TransferRequest, TransferResponse } from "./nft/domain"
-import type { BuyRequest, BuyResponse, CancelOrderRequest, SellRequest, SellResponse } from "./order/domain"
+import type {
+	BuyRequest,
+	BuyResponse,
+	CancelOrderRequest,
+	CancelOrderResponse,
+	SellRequest,
+	SellResponse,
+} from "./order/domain"
 import type { BalanceRequestAssetType } from "./balance/balance"
 
 export type ImxEnv = "e2e" | "dev" | "staging" | "prod"
@@ -27,7 +34,7 @@ export type ImxWallet = {
 export type ImxOrderSdk = {
 	buy(request: BuyRequest): Promise<BuyResponse>
 	sell(request: SellRequest): Promise<SellResponse>
-	cancel(request: CancelOrderRequest): Promise<ImxBlockchainTx>
+	cancel(request: CancelOrderRequest): Promise<CancelOrderResponse>
 }
 
 export type ImxNftSdk = {

@@ -3,11 +3,16 @@ import type { Ethereum } from "@rarible/ethereum-provider"
 import type { Maybe } from "@rarible/types"
 import { toAddress } from "@rarible/types"
 import { convertFees } from "../common/convert-fees"
-import type { ImxBlockchainTx } from "../domain"
 import type { ImxUser } from "../user/user"
 import { prepareMethod } from "../common/run-with-imx-auth"
-import type { BuyRequest, BuyResponse, CancelOrderRequest, SellRequest } from "./domain"
-import type { SellResponse } from "./domain"
+import type {
+	BuyRequest,
+	BuyResponse,
+	CancelOrderRequest,
+	CancelOrderResponse,
+	SellRequest,
+	SellResponse,
+} from "./domain"
 
 export async function sell(
 	ethereum: Maybe<Ethereum>,
@@ -58,14 +63,21 @@ export async function cancel(
 	userSdk: ImxUser,
 	starkKey: Maybe<string>,
 	request: CancelOrderRequest,
-): Promise<ImxBlockchainTx> {
+): Promise<CancelOrderResponse> {
 	if (ethereum === undefined) {
 		throw new Error("Wallet undefined")
 	}
 	const userAddress = await ethereum.getFrom()
 	const prepared = await prepareMethod(link, userSdk, toAddress(userAddress), starkKey, link.cancel)
 	const { orderId } = request
-	return prepared({
+	const result = await prepared({
 		orderId,
 	})
+	return {
+		orderId: (result as unknown as {
+			// eslint-disable-next-line camelcase
+			order_id: number,
+			status: string
+		}).order_id.toString(),
+	}
 }
