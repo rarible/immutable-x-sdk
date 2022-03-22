@@ -21,7 +21,7 @@ export type ImxFee = { recipient: string, percentage: number }
 export type ImxBlockchainTx = void
 
 export type ImxWallet = {
-	connect(): ReturnType<Link["setup"]>
+	registerImx(): ReturnType<Link["setup"]>
 }
 
 export type ImxOrderSdk = {

@@ -45,7 +45,7 @@ export class ImxBalanceControllerApi extends runtime.BaseAPI {
 		requestParameters: GetAllBalancesRequest,
 	): Promise<runtime.ApiResponse<GetAllBalancesResponse>> {
 		if (requestParameters.ownerAddress === null || requestParameters.ownerAddress === undefined) {
-			throw new runtime.RequiredError("ownerAddress", "Required parameter requestParameters.ownerAddress was null or undefined when calling getBidCurrencies.")
+			throw new runtime.RequiredError("ownerAddress", "Required parameter requestParameters.ownerAddress was null or undefined when calling getAllBalances.")
 		}
 
 		const queryParameters: runtime.HTTPQuery = {}
