@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-alpha.4](https://github.com/rarible/immutable-x-sdk/compare/v0.0.2-alpha.3...v0.0.2-alpha.4) (2022-03-22)
+
+
+### Bug Fixes
+
+* userApi configuration ([b0545a4](https://github.com/rarible/immutable-x-sdk/commit/b0545a4e8ad821bfd7d8dfe7557fd92ea54865f5))
+
+
+
+
+
 ## [0.0.2-alpha.3](https://github.com/rarible/immutable-x-sdk/compare/v0.0.2-alpha.2...v0.0.2-alpha.3) (2022-03-22)
 
 
