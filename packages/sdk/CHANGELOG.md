@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-alpha.1](https://github.com/compare/v0.0.2-alpha.0...v0.0.2-alpha.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* deps ([5712658](https://github.com/commit/57126584346b9aeee934007b1e58fdb6477acb54))
+
+
+
+
+
 ## [0.0.2-alpha.0](https://github.com/compare/v0.0.1-alpha.4...v0.0.2-alpha.0) (2022-03-22)
 
 
