@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-alpha.6](https://github.com/compare/v0.0.2-alpha.5...v0.0.2-alpha.6) (2022-03-22)
+
+
+### Bug Fixes
+
+* cancel order response ([34fa046](https://github.com/commit/34fa0462107a49052db304d77347a616d8263b1e))
+
+
+
+
+
 ## [0.0.2-alpha.5](https://github.com/compare/v0.0.2-alpha.4...v0.0.2-alpha.5) (2022-03-22)
 
 
