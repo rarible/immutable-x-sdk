@@ -13,8 +13,12 @@ export async function prepareMethod<T>(
 	if (!userAddress) {
 		throw new Error("Ethereum address is undefined")
 	}
+	//todo think about starkKey parameter passing here
 	if (!starkKey) {
-		throw new Error("Start key is undefined")
+		starkKey = (await userSdk.getUserStarkKeys(userAddress))[0]
+		if (!starkKey) {
+			starkKey = (await link.setup({})).starkPublicKey
+		}
 	}
 	if (!(await userSdk.checkUserIsRegistered(toAddress(userAddress), starkKey))) {
 		const { address, starkPublicKey } = await link.setup({})
@@ -26,6 +30,7 @@ export async function prepareMethod<T>(
 		} else {
 			throw new Error("Registration in Imx filed, please try again")
 		}
+	} else {
+		return method
 	}
-	return method
 }
