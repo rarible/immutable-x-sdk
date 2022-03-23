@@ -1,4 +1,4 @@
-## Rarible ImmutableS SDK
+## Rarible ImmutableX SDK
 
 Rarible immutable sdk enables easily interaction with [ImmutableX](https://www.immutable.com/) layer 2 on Rarible
 Protocol.
