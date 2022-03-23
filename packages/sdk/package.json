@@ -17,11 +17,10 @@
     "verify": "tsc --noEmit"
   },
   "dependencies": {
-    "@rarible/types": "~0.8.0"
+    "@rarible/types": "~0.8.0",
+    "@imtbl/imx-sdk": "^1.7.0"
   },
   "devDependencies": {
-    "@imtbl/imx-link-sdk": "^2.0.25",
-    "@imtbl/imx-sdk": "^1.7.0",
     "@rarible/ethereum-api-client": "^0.1.20",
     "@rarible/ethereum-provider": "~0.12.54",
     "@rarible/utils": "~0.8.0",

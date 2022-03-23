@@ -12,17 +12,6 @@ import type {
 } from "./order/domain"
 import type { BalanceRequestAssetType } from "./balance/balance"
 
-export type ImxEnv = "e2e" | "dev" | "staging" | "prod"
-
-export type ImxEnvConfig = Record<ImxEnv, {
-	linkAddress: string
-	apiAddress: string
-	apiAddressV2: string
-	raribleApiAddress: string
-}>
-
-export type ImxRoot = { link: Link, env: ImxEnv }
-
 export type ImxFee = { recipient: string, percentage: number }
 
 export type ImxBlockchainTx = void
