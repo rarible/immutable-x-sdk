@@ -16,11 +16,16 @@ SDK is written in TypeScript. You can use typings to explore SDK possibilities.
 ### Initialisation
 
 ```typescript
-import { createImxLink, createImxSdk } from "@rarible/immutable-sdk/build"
+import { createImxSdk } from "@rarible/immutable-sdk"
+import Web3 from "web3"
+import { Web3Ethereum } from "@rarible/web3-ethereum"
 
-const wallet = createImxLink("dev")
-const sdk = createImxSdk(wallet)
+const web = new Web3(ethereum)
+const web3Ethereum = new Web3Ethereum({ web3: web })
+const sdk = createImxSdk(web3Ethereum, "dev")
 ```
+
+- ethereum - metamask browser instance (window.ethereum)
 
 ### Create sell order
 
@@ -34,8 +39,8 @@ sdk.order.sell({
 	},
 	amount: 1,
 	price: "0.1",
-	payouts: [],
-	originFees: []
+	payouts: [{ account: Address, value: BigNumber }],
+	originFees: [{ account: Address, value: BigNumber }]
 })
 ```
 
@@ -44,6 +49,14 @@ sdk.order.sell({
 ```typescript
 sdk.order.buy({
 	orderIds: [""],
-	fee: []
+	fee: [{ account: Address, value: BigNumber }]
+})
+```
+
+### Cancel an order
+
+```typescript
+sdk.order.cancel({
+	orderId: "12345",
 })
 ```
