@@ -1,10 +1,14 @@
 import { Link } from "@imtbl/imx-sdk"
+import type { Maybe } from "@rarible/types"
+import type { Ethereum } from "@rarible/ethereum-provider"
 import { IMMUTABLE_ENV_CONFIG } from "./config"
 import type { ImxEnv, ImxRoot, RaribleImxSdk } from "./domain"
 import { transfer } from "./nft/transfer"
 import { buy, cancel, sell } from "./order"
 import { Configuration, ImxBalanceControllerApi } from "./apis"
 import { ImxBalances } from "./balance/balance"
+import { ImxUser } from "./user/user"
+import { ImxUserControllerApi } from "./apis/user"
 
 export function createImxLink(env: ImxEnv): ImxRoot {
 	return {
@@ -13,25 +17,30 @@ export function createImxLink(env: ImxEnv): ImxRoot {
 	}
 }
 
-export function createImxSdk(wallet: ImxRoot): RaribleImxSdk {
-	const { env, link } = wallet
-	const apiConfig = new Configuration({ basePath: IMMUTABLE_ENV_CONFIG[env].apiAddressV2 })
-	const apis = new ImxBalanceControllerApi(apiConfig)
-	const balancesSdk = new ImxBalances(apis)
+export function createImxSdk(
+	ethereum: Maybe<Ethereum>,
+	env: ImxEnv,
+	starkKey: Maybe<string>,
+): RaribleImxSdk {
+	const balanceApiConfig = new Configuration({ basePath: IMMUTABLE_ENV_CONFIG[env].apiAddressV2 })
+	const balancesSdk = new ImxBalances(new ImxBalanceControllerApi(balanceApiConfig))
+	const defaultApiConfig = new Configuration({ basePath: IMMUTABLE_ENV_CONFIG[env].apiAddress })
+	const userSdk = new ImxUser(new ImxUserControllerApi(defaultApiConfig))
+	const configuredLink = new Link(IMMUTABLE_ENV_CONFIG[env].linkAddress)
 	return {
 		nft: {
-			transfer: transfer.bind(null, link),
+			transfer: transfer.bind(null, configuredLink),
 		},
 		order: {
-			sell: sell.bind(null, link),
-			buy: buy.bind(null, link),
-			cancel: cancel.bind(null, link),
+			sell: sell.bind(null, ethereum, configuredLink, userSdk, starkKey),
+			buy: buy.bind(null, ethereum, configuredLink, userSdk, starkKey),
+			cancel: cancel.bind(null, ethereum, configuredLink, userSdk, starkKey),
 		},
 		balance: {
 			getBalance: balancesSdk.getBalance,
 		},
 		wallet: {
-			connect: async () => link.setup({}),
+			registerImx: async () => configuredLink.setup({}),
 		},
 	}
 }

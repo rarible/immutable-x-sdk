@@ -16,11 +16,11 @@
     "release": "lerna publish from-package",
     "prettify:packages": "lerna exec -- sort-package-json && sort-package-json",
     "prettify": "run-s prettify:*",
-    "test": "lerna run test --stream",
+    "prepare": "husky install",
+    "test": "lerna run test --parallel",
     "verify": "lerna run verify --parallel",
     "lint-staged": "lint-staged",
     "publish-all": "lerna publish from-package",
-    "prepare": "husky install",
     "precommit": "run-s verify lint"
   },
   "commitlint": {

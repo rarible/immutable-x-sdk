@@ -1,6 +1,6 @@
 {
   "name": "@rarible/immutable-sdk",
-  "version": "0.0.1-alpha.4",
+  "version": "0.0.2-alpha.6",
   "description": "SDK for interact with immutable blockchain and Rarible protocol",
   "repository": "https://github.com/rarible/",
   "license": "MIT",
@@ -16,11 +16,14 @@
     "test": "jest --passWithNoTests --testTimeout=30000",
     "verify": "tsc --noEmit"
   },
+  "dependencies": {
+    "@rarible/types": "~0.8.0"
+  },
   "devDependencies": {
     "@imtbl/imx-link-sdk": "^2.0.25",
     "@imtbl/imx-sdk": "^1.7.0",
     "@rarible/ethereum-api-client": "^0.1.20",
-    "@rarible/types": "~0.8.0",
+    "@rarible/ethereum-provider": "~0.12.54",
     "@rarible/utils": "~0.8.0",
     "@types/jest": "^27.0.2",
     "jest": "^27.2.0",
