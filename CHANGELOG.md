@@ -3,6 +3,88 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.2-alpha.6](https://github.com/rarible/immutable-x-sdk/compare/v0.0.2-alpha.5...v0.0.2-alpha.6) (2022-03-22)
+
+
+### Bug Fixes
+
+* cancel order response ([34fa046](https://github.com/rarible/immutable-x-sdk/commit/34fa0462107a49052db304d77347a616d8263b1e))
+
+
+
+
+
+## [0.0.2-alpha.5](https://github.com/rarible/immutable-x-sdk/compare/v0.0.2-alpha.4...v0.0.2-alpha.5) (2022-03-22)
+
+
+### Bug Fixes
+
+* sell method response ([d65c60b](https://github.com/rarible/immutable-x-sdk/commit/d65c60bf60463e93b0e4f8f398072a9c5b37e8a0))
+
+
+
+
+
+## [0.0.2-alpha.4](https://github.com/rarible/immutable-x-sdk/compare/v0.0.2-alpha.3...v0.0.2-alpha.4) (2022-03-22)
+
+
+### Bug Fixes
+
+* userApi configuration ([b0545a4](https://github.com/rarible/immutable-x-sdk/commit/b0545a4e8ad821bfd7d8dfe7557fd92ea54865f5))
+
+
+
+
+
+## [0.0.2-alpha.3](https://github.com/rarible/immutable-x-sdk/compare/v0.0.2-alpha.2...v0.0.2-alpha.3) (2022-03-22)
+
+
+### Bug Fixes
+
+* user api response and configuration ([bd89cce](https://github.com/rarible/immutable-x-sdk/commit/bd89cce5fc0e887fd93c471cca016ddfd82cf8ce))
+
+
+
+
+
+## [0.0.2-alpha.2](https://github.com/rarible/immutable-x-sdk/compare/v0.0.2-alpha.1...v0.0.2-alpha.2) (2022-03-22)
+
+
+### Bug Fixes
+
+* user registration checking ([bd115a0](https://github.com/rarible/immutable-x-sdk/commit/bd115a0796c3019430f3158c9d38ba2cf9f59a3f))
+
+
+
+
+
+## [0.0.2-alpha.1](https://github.com/rarible/immutable-x-sdk/compare/v0.0.2-alpha.0...v0.0.2-alpha.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* deps ([5712658](https://github.com/rarible/immutable-x-sdk/commit/57126584346b9aeee934007b1e58fdb6477acb54))
+
+
+
+
+
+## [0.0.2-alpha.0](https://github.com/rarible/immutable-x-sdk/compare/v0.0.1-alpha.4...v0.0.2-alpha.0) (2022-03-22)
+
+
+### Bug Fixes
+
+* remove extra code, husky hook ([77befae](https://github.com/rarible/immutable-x-sdk/commit/77befae2c8d4b9999bb90eb28649afdbd220edc4))
+
+
+### Features
+
+* refactor sdk with ethereum wallet ([c190a4e](https://github.com/rarible/immutable-x-sdk/commit/c190a4e7ea6ad4d2b0b15215b8d99e0871416cb5))
+
+
+
+
+
 ## [0.0.1-alpha.4](https://github.com/rarible/immutable-x-sdk/compare/v0.0.1-alpha.3...v0.0.1-alpha.4) (2022-03-17)
 
 
