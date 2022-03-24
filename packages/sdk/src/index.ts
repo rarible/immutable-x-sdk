@@ -20,7 +20,7 @@ export function createImxLink(env: ImxEnv): ImxRoot {
 export function createImxSdk(
 	ethereum: Maybe<Ethereum>,
 	env: ImxEnv,
-	starkKey: Maybe<string>,
+	starkKey?: string,
 ): RaribleImxSdk {
 	const balanceApiConfig = new Configuration({ basePath: IMMUTABLE_ENV_CONFIG[env].apiAddressV2 })
 	const balancesSdk = new ImxBalances(new ImxBalanceControllerApi(balanceApiConfig))

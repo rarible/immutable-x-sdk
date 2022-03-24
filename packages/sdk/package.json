@@ -30,6 +30,10 @@
     "ts-jest": "^27.0.5",
     "typescript": "^4.4.4"
   },
+  "peerDependencies": {
+    "@imtbl/imx-link-sdk": "^2.0.25",
+    "@imtbl/imx-sdk": "^1.7.0"
+  },
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
