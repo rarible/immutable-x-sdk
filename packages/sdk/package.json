@@ -17,11 +17,13 @@
     "verify": "tsc --noEmit"
   },
   "dependencies": {
+    "@rarible/ethereum-api-client": "^0.1.20",
     "@rarible/types": "~0.8.0",
-    "@imtbl/imx-sdk": "^1.7.0"
+    "@imtbl/imx-sdk": "^1.7.0",
+    "@ethersproject/providers": "~5.6.1",
+    "@ethersproject/wallet": "~5.6.0"
   },
   "devDependencies": {
-    "@rarible/ethereum-api-client": "^0.1.20",
     "@rarible/ethereum-provider": "~0.12.54",
     "@rarible/utils": "~0.8.0",
     "@types/jest": "^27.0.2",

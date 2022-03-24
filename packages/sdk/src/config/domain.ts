@@ -1,3 +1,5 @@
+import type { Address } from "@rarible/types"
+
 export type ImxEnv = "mainnet" | "ropsten"
 
 export type RaribleImxEnv = "e2e" | "dev" | "staging" | "prod"
@@ -7,6 +9,11 @@ export type ImxConfig = {
 	linkAddress: string
 	apiAddress: string
 	apiAddressV2: string
+	metadataApiUrl: string
+	alchemyApiKey: string
+	raribleCollection: {
+		contractAddress: Address
+	}
 	starkContractAddress: string
 	registrationAddress: string
 	gasLimit: string
