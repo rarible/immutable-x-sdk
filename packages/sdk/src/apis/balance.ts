@@ -1,6 +1,7 @@
 /* tslint:disable */
 import type { BigNumberT } from "@imtbl/imx-sdk"
-import * as runtime from "./runtime"
+import type { ApiResponse, HTTPHeaders, HTTPQuery} from "./runtime"
+import { BaseImxSdkAPI, JSONApiResponse, RequiredError } from "./runtime"
 
 export interface GetAllBalancesRequest {
 	ownerAddress: string;
@@ -17,18 +18,18 @@ export interface GetAllBalancesResponse {
 }
 
 
-export class ImxBalanceControllerApi extends runtime.BaseAPI {
+export class ImxBalanceControllerApi extends BaseImxSdkAPI {
 
 	async getAllBalancesRaw(
 		requestParameters: GetAllBalancesRequest,
-	): Promise<runtime.ApiResponse<GetAllBalancesResponse>> {
+	): Promise<ApiResponse<GetAllBalancesResponse>> {
 		if (requestParameters.ownerAddress === null || requestParameters.ownerAddress === undefined) {
-			throw new runtime.RequiredError("ownerAddress", "Required parameter requestParameters.ownerAddress was null or undefined when calling getAllBalances.")
+			throw new RequiredError("ownerAddress", "Required parameter requestParameters.ownerAddress was null or undefined when calling getAllBalances.")
 		}
 
-		const queryParameters: runtime.HTTPQuery = {}
+		const queryParameters: HTTPQuery = {}
 
-		const headerParameters: runtime.HTTPHeaders = {}
+		const headerParameters: HTTPHeaders = {}
 
 		const response = await this.request({
 			path: "/balances/{address}".replace(`{${"address"}}`, encodeURIComponent(String(requestParameters.ownerAddress))),
@@ -37,7 +38,7 @@ export class ImxBalanceControllerApi extends runtime.BaseAPI {
 			query: queryParameters,
 		})
 		// @ts-ignore
-		return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue as GetAllBalancesResponse)
+		return new JSONApiResponse(response, (jsonValue) => jsonValue as GetAllBalancesResponse)
 
 	}
 

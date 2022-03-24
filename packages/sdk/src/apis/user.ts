@@ -1,5 +1,6 @@
 /* tslint:disable */
-import * as runtime from "./runtime"
+import type { ApiResponse, HTTPHeaders, HTTPQuery} from "./runtime"
+import { BaseImxSdkAPI, JSONApiResponse, RequiredError } from "./runtime"
 
 export interface GetImxUserStarkKeysRequest {
 	address: string;
@@ -10,18 +11,18 @@ export interface GetImxUserStarkKeysResponse {
 }
 
 
-export class ImxUserControllerApi extends runtime.BaseAPI {
+export class ImxUserControllerApi extends BaseImxSdkAPI {
 
 	async getImxUserStarkKeysRaw(
 		requestParameters: GetImxUserStarkKeysRequest,
-	): Promise<runtime.ApiResponse<GetImxUserStarkKeysResponse>> {
+	): Promise<ApiResponse<GetImxUserStarkKeysResponse>> {
 		if (requestParameters.address === null || requestParameters.address === undefined) {
-			throw new runtime.RequiredError("address", "Required parameter requestParameters.address was null or undefined when calling getImxUserStarkKeys.")
+			throw new RequiredError("address", "Required parameter requestParameters.address was null or undefined when calling getImxUserStarkKeys.")
 		}
 
-		const queryParameters: runtime.HTTPQuery = {}
+		const queryParameters: HTTPQuery = {}
 
-		const headerParameters: runtime.HTTPHeaders = {}
+		const headerParameters: HTTPHeaders = {}
 
 		const response = await this.request({
 			path: "/users/{address}".replace(`{${"address"}}`, encodeURIComponent(String(requestParameters.address))),
@@ -30,7 +31,7 @@ export class ImxUserControllerApi extends runtime.BaseAPI {
 			query: queryParameters,
 		})
 		// @ts-ignore
-		return new runtime.JSONApiResponse(response, (jsonValue) => jsonValue as GetImxUserStarkKeysResponse)
+		return new JSONApiResponse(response, (jsonValue) => jsonValue as GetImxUserStarkKeysResponse)
 
 	}
 

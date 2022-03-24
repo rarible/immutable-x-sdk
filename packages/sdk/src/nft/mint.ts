@@ -27,11 +27,15 @@ export type MintResponse = {
 	txId: string
 }
 
+export type MintRequest = {
+	receiver: Address
+}
+
 export async function mint(
 	ethereum: Maybe<Ethereum>,
 	network: ImxEnv,
 	nftCollectionApi: NftCollectionControllerApi,
-	receiver: Address,
+	request: MintRequest,
 ): Promise<MintResponse> {
 	if (ethereum === undefined) {
 		throw new Error("Wallet undefined")
@@ -47,6 +51,7 @@ export async function mint(
 		gasLimit,
 		gasPrice,
 	} = IMX_CONFIG[network]
+	//todo move to root
 	const provider = new AlchemyProvider(network, alchemyApiKey)
 	const wallet = new Wallet("privat_key")//todo
 	const signer = wallet.connect(provider)
@@ -65,7 +70,7 @@ export async function mint(
 	const payload: ImmutableMethodParams.ImmutableOffchainMintV2ParamsTS = [
 		{
 			users: [{
-				etherKey: receiver,
+				etherKey: request.receiver,
 				tokens: [{
 					id: tokenId.tokenId,
 					blueprint: metadataApiUrl.toLowerCase() + tokenId.tokenId,

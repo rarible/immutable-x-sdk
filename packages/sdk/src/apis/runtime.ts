@@ -20,26 +20,26 @@ const isBlob = (value: any) => typeof Blob !== "undefined" && value instanceof B
 /**
  * This is the base class for all generated API classes.
  */
-export class BaseAPI {
+export class BaseImxSdkAPI {
 
 	private middleware: Middleware[]
 
-	constructor(protected configuration = new Configuration()) {
+	constructor(protected configuration = new RaribleImxApiConfiguration()) {
 		this.middleware = configuration.middleware
 	}
 
-	withMiddleware<T extends BaseAPI>(this: T, ...middlewares: Middleware[]) {
+	withMiddleware<T extends BaseImxSdkAPI>(this: T, ...middlewares: Middleware[]) {
 		const next = this.clone<T>()
 		next.middleware = next.middleware.concat(...middlewares)
 		return next
 	}
 
-	withPreMiddleware<T extends BaseAPI>(this: T, ...preMiddlewares: Array<Middleware["pre"]>) {
+	withPreMiddleware<T extends BaseImxSdkAPI>(this: T, ...preMiddlewares: Array<Middleware["pre"]>) {
 		const middlewares = preMiddlewares.map((pre) => ({ pre }))
 		return this.withMiddleware<T>(...middlewares)
 	}
 
-	withPostMiddleware<T extends BaseAPI>(this: T, ...postMiddlewares: Array<Middleware["post"]>) {
+	withPostMiddleware<T extends BaseImxSdkAPI>(this: T, ...postMiddlewares: Array<Middleware["post"]>) {
 		const middlewares = postMiddlewares.map((post) => ({ post }))
 		return this.withMiddleware<T>(...middlewares)
 	}
@@ -103,7 +103,7 @@ export class BaseAPI {
 	 * Create a shallow clone of `this` by constructing a new instance
 	 * and then shallow cloning data members.
 	 */
-	private clone<T extends BaseAPI>(this: T): T {
+	private clone<T extends BaseImxSdkAPI>(this: T): T {
 		const constructor = this.constructor as any
 		const next = new constructor(this.configuration)
 		next.middleware = this.middleware.slice()
@@ -141,7 +141,7 @@ export interface ConfigurationParameters {
 	credentials?: RequestCredentials; //value for the credentials param we want to use on each request
 }
 
-export class Configuration {
+export class RaribleImxApiConfiguration {
 	constructor(private configuration: ConfigurationParameters = {}) {
 	}
 

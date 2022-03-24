@@ -1,27 +1,38 @@
 import { Link } from "@imtbl/imx-sdk"
 import type { Maybe } from "@rarible/types"
 import type { Ethereum } from "@rarible/ethereum-provider"
+import { Configuration, NftCollectionControllerApi } from "@rarible/ethereum-api-client"
 import type { RaribleImxSdk } from "./domain"
 import { transfer } from "./nft/transfer"
 import { buy, cancel, sell } from "./order"
-import { Configuration, ImxBalanceControllerApi } from "./apis"
+import { ImxBalanceControllerApi, RaribleImxApiConfiguration } from "./apis"
 import { ImxBalances } from "./balance/balance"
 import { ImxUser } from "./user/user"
 import { ImxUserControllerApi } from "./apis/user"
 import type { RaribleImxEnv } from "./config/domain"
 import { RARIBLE_IMX_ENV_CONFIG } from "./config/env"
+import { mint } from "./nft/mint"
 
 export function createImxSdk(
 	ethereum: Maybe<Ethereum>,
 	env: RaribleImxEnv,
 	starkKey?: string,
 ): RaribleImxSdk {
-	const { linkAddress, apiAddress, apiAddressV2 } = RARIBLE_IMX_ENV_CONFIG[env]
+	const {
+		linkAddress,
+		apiAddress,
+		apiAddressV2,
+		raribleImxApiUrl,
+		imxNetwork,
+	} = RARIBLE_IMX_ENV_CONFIG[env]
 
-	const balanceApiConfig = new Configuration({ basePath: apiAddressV2 })
+	const raribleApiConfig = new Configuration({ basePath: raribleImxApiUrl })
+	const nftCollectionApi = new NftCollectionControllerApi(raribleApiConfig)
+
+	const balanceApiConfig = new RaribleImxApiConfiguration({ basePath: apiAddressV2 })
 	const balancesSdk = new ImxBalances(new ImxBalanceControllerApi(balanceApiConfig))
 
-	const defaultApiConfig = new Configuration({ basePath: apiAddress })
+	const defaultApiConfig = new RaribleImxApiConfiguration({ basePath: apiAddress })
 	const userSdk = new ImxUser(new ImxUserControllerApi(defaultApiConfig))
 
 	const configuredLink = new Link(linkAddress)
@@ -29,6 +40,7 @@ export function createImxSdk(
 	return {
 		nft: {
 			transfer: transfer.bind(null, configuredLink),
+			mint: mint.bind(null, ethereum, imxNetwork, nftCollectionApi),
 		},
 		order: {
 			sell: sell.bind(null, ethereum, configuredLink, userSdk, starkKey),

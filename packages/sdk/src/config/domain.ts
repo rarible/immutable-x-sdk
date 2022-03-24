@@ -6,6 +6,7 @@ export type RaribleImxEnv = "e2e" | "dev" | "staging" | "prod"
 
 export type ImxConfig = {
 	imxNetwork: ImxEnv
+	raribleImxApiUrl: string
 	linkAddress: string
 	apiAddress: string
 	apiAddressV2: string
