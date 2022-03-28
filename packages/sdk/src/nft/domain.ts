@@ -6,4 +6,8 @@ export type TransferRequest = {
 	to: Address
 }
 
+export type BurnRequest = {
+	asset: Erc721AssetType,
+}
+
 export type TransferResponse = ReturnType<Link["transfer"]>

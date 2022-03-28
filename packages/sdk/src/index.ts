@@ -12,6 +12,7 @@ import { ImxUserControllerApi } from "./apis/user"
 import type { RaribleImxEnv } from "./config/domain"
 import { RARIBLE_IMX_ENV_CONFIG } from "./config/env"
 import { mint } from "./nft/mint"
+import { burn } from "./nft/burn"
 
 export function createImxSdk(
 	ethereum: Maybe<Ethereum>,
@@ -41,6 +42,7 @@ export function createImxSdk(
 		nft: {
 			transfer: transfer.bind(null, configuredLink),
 			mint: mint.bind(null, ethereum, imxNetwork, nftCollectionApi),
+			burn: burn.bind(null, configuredLink),
 		},
 		order: {
 			sell: sell.bind(null, ethereum, configuredLink, userSdk, starkKey),

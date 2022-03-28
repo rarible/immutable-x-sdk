@@ -4,11 +4,11 @@ import type { ImxEnvConfig, RaribleImxEnvConfig } from "./domain"
 export const IMX_CONFIG: ImxEnvConfig = {
 	mainnet: {
 		imxNetwork: "mainnet",
-		raribleImxApiUrl: "", //todo
+		raribleImxApiUrl: "https://ethereum-api.rarible.org",
 		linkAddress: "https://link.x.immutable.com",
 		apiAddress: "https://api.x.immutable.com/v1",
 		apiAddressV2: "https://api.x.immutable.com/v2",
-		metadataApiUrl: "https://", //todo
+		metadataApiUrl: "https://gateway.pinata.cloud/ipfs/QmQoiMLbJD7z4GiH2VogTcGKAG67nnucUixK9rG94WyhTU",
 		alchemyApiKey: "", //todo
 		raribleCollection: {
 			contractAddress: toAddress(ZERO_ADDRESS.toLowerCase()), // todo
@@ -21,14 +21,14 @@ export const IMX_CONFIG: ImxEnvConfig = {
 	},
 	ropsten: {
 		imxNetwork: "ropsten",
-		raribleImxApiUrl: "", //todo
+		raribleImxApiUrl: "https://ethereum-api-dev.rarible.org",
 		linkAddress: "https://link.ropsten.x.immutable.com",
 		apiAddress: "https://api.ropsten.x.immutable.com/v1",
 		apiAddressV2: "https://api.ropsten.x.immutable.com/v2",
 		alchemyApiKey: "GG27RjfvRVU073Kh33GjnfWQEk_1BFx8",
-		metadataApiUrl: "https://", //todo
+		metadataApiUrl: "https://gateway.pinata.cloud/ipfs/QmQoiMLbJD7z4GiH2VogTcGKAG67nnucUixK9rG94WyhTU",
 		raribleCollection: {
-			contractAddress: toAddress(ZERO_ADDRESS.toLowerCase()), // todo
+			contractAddress: toAddress("0xf2767A6890d71A3764b8b3a5a6059B3826cfE03D".toLowerCase()), // todo
 		},
 		starkContractAddress: "0x4527BE8f31E2ebFbEF4fCADDb5a17447B27d2aef",
 		registrationAddress: "0x6C21EC8DE44AE44D0992ec3e2d9f1aBb6207D864",
