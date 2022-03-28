@@ -13,7 +13,7 @@ yarn add @rarible/immutable-sdk @imtbl/imx-sdk @imtbl/imx-link-sdk
 
 SDK is written in TypeScript. You can use typings to explore SDK possibilities.
 
-### Initialisation
+### Initialization
 
 ```typescript
 import { createImxSdk } from "@rarible/immutable-sdk"

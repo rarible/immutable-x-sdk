@@ -1,35 +1,48 @@
 import { Link } from "@imtbl/imx-sdk"
 import type { Maybe } from "@rarible/types"
 import type { Ethereum } from "@rarible/ethereum-provider"
-import { IMMUTABLE_ENV_CONFIG } from "./config"
-import type { ImxEnv, ImxRoot, RaribleImxSdk } from "./domain"
-import { transfer } from "./nft"
+import { Configuration, NftCollectionControllerApi } from "@rarible/ethereum-api-client"
+import type { RaribleImxSdk } from "./domain"
+import { transfer } from "./nft/transfer"
 import { buy, cancel, sell } from "./order"
-import { Configuration, ImxBalanceControllerApi } from "./apis"
+import { ImxBalanceControllerApi, RaribleImxApiConfiguration } from "./apis"
 import { ImxBalances } from "./balance/balance"
 import { ImxUser } from "./user/user"
 import { ImxUserControllerApi } from "./apis/user"
-
-export function createImxLink(env: ImxEnv): ImxRoot {
-	return {
-		link: new Link(IMMUTABLE_ENV_CONFIG[env].linkAddress),
-		env,
-	}
-}
+import type { RaribleImxEnv } from "./config/domain"
+import { RARIBLE_IMX_ENV_CONFIG } from "./config/env"
+import { mint } from "./nft/mint"
+import { burn } from "./nft/burn"
 
 export function createImxSdk(
 	ethereum: Maybe<Ethereum>,
-	env: ImxEnv,
+	env: RaribleImxEnv,
 	starkKey?: string,
 ): RaribleImxSdk {
-	const balanceApiConfig = new Configuration({ basePath: IMMUTABLE_ENV_CONFIG[env].apiAddressV2 })
+	const {
+		linkAddress,
+		apiAddress,
+		apiAddressV2,
+		raribleImxApiUrl,
+		imxNetwork,
+	} = RARIBLE_IMX_ENV_CONFIG[env]
+
+	const raribleApiConfig = new Configuration({ basePath: raribleImxApiUrl })
+	const nftCollectionApi = new NftCollectionControllerApi(raribleApiConfig)
+
+	const balanceApiConfig = new RaribleImxApiConfiguration({ basePath: apiAddressV2 })
 	const balancesSdk = new ImxBalances(new ImxBalanceControllerApi(balanceApiConfig))
-	const defaultApiConfig = new Configuration({ basePath: IMMUTABLE_ENV_CONFIG[env].apiAddress })
+
+	const defaultApiConfig = new RaribleImxApiConfiguration({ basePath: apiAddress })
 	const userSdk = new ImxUser(new ImxUserControllerApi(defaultApiConfig))
-	const configuredLink = new Link(IMMUTABLE_ENV_CONFIG[env].linkAddress)
+
+	const configuredLink = new Link(linkAddress)
+
 	return {
 		nft: {
 			transfer: transfer.bind(null, configuredLink),
+			mint: mint.bind(null, ethereum, imxNetwork, nftCollectionApi),
+			burn: burn.bind(null, configuredLink),
 		},
 		order: {
 			sell: sell.bind(null, ethereum, configuredLink, userSdk, starkKey),

@@ -3,6 +3,7 @@ import { toAddress } from "@rarible/types"
 import type { Link } from "@imtbl/imx-sdk"
 import type { ImxUser } from "../user/user"
 
+// todo write tests
 export async function prepareMethod<T>(
 	link: Link,
 	userSdk: ImxUser,
