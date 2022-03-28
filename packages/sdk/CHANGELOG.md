@@ -3,6 +3,26 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-alpha.0](https://github.com/compare/v0.0.2-alpha.6...v0.0.3-alpha.0) (2022-03-28)
+
+
+### Bug Fixes
+
+* add test rarible collection to config ([16e6149](https://github.com/commit/16e614979edf4e6ff30f2c36d55fb09bff776eac))
+* temporary get pk for mint fron envs ([74b2e29](https://github.com/commit/74b2e297900c572b472033d7a6f6a1eabd145d4b))
+
+
+### Features
+
+* added burn function ([9336917](https://github.com/commit/9336917a90aeb51e3dab099709dc04e43d89df2d))
+* fb-656 add mint endpoint to root of sdk ([4bb76c3](https://github.com/commit/4bb76c3782ad19eaf3ebef1ebb0417e3dd2db350))
+* fb-656 mint draft ([e1a0db8](https://github.com/commit/e1a0db80d13190904c17d014b9e423c360f7422f))
+* mint draft ([674d88c](https://github.com/commit/674d88cc890bb36929a2d86cbd3fd24472aaf63a))
+
+
+
+
+
 ## [0.0.2-alpha.6](https://github.com/compare/v0.0.2-alpha.5...v0.0.2-alpha.6) (2022-03-22)
 
 
