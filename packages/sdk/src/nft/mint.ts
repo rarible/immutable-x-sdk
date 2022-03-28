@@ -53,7 +53,7 @@ export async function mint(
 	} = IMX_CONFIG[network]
 	//todo move to root
 	const provider = new AlchemyProvider(network, alchemyApiKey)
-	const wallet = new Wallet("privat_key")//todo
+	const wallet = new Wallet(process.env.PK!)//todo
 	const signer = wallet.connect(provider)
 	const minter = await ImmutableXClient.build({
 		publicApiUrl: apiAddress,
