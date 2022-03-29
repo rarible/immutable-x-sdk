@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-alpha.2](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.1...v0.0.3-alpha.2) (2022-03-29)
+
+
+### Bug Fixes
+
+* refactor sell transfer burn mint interfaces, add royalties ([4b879aa](https://github.com/rarible/immutable-x-sdk/commit/4b879aa1785d0f91c0d3f4c5791a026745630afc))
+* refactor sell transfer burn mint interfaces, add royalties ([60ad1f0](https://github.com/rarible/immutable-x-sdk/commit/60ad1f03ecb0cae364d9d4fb32a874ff9a09c432))
+
+
+
+
+
 ## [0.0.3-alpha.1](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.0...v0.0.3-alpha.1) (2022-03-29)
 
 
