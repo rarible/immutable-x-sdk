@@ -29,6 +29,7 @@ export type MintResponse = {
 
 export type MintRequest = {
 	receiver: Address
+	pk: string
 }
 
 export async function mint(
@@ -53,7 +54,7 @@ export async function mint(
 	} = IMX_CONFIG[network]
 	//todo move to root
 	const provider = new AlchemyProvider(network, alchemyApiKey)
-	const wallet = new Wallet(process.env.PK!)//todo
+	const wallet = new Wallet(request.pk)//todo
 	const signer = wallet.connect(provider)
 	const minter = await ImmutableXClient.build({
 		publicApiUrl: apiAddress,
