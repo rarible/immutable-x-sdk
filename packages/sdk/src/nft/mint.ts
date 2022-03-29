@@ -6,21 +6,10 @@ import type { NftCollectionControllerApi, Part } from "@rarible/ethereum-api-cli
 import type { Ethereum } from "@rarible/ethereum-provider"
 import { AlchemyProvider } from "@ethersproject/providers"
 import { Wallet } from "@ethersproject/wallet"
-import type { Brand } from "io-ts"
 import type { ImxEnv } from "../config/domain"
 import { IMX_CONFIG } from "../config/env"
 import { convertFees } from "../common/convert-fees"
 import { getTokenId } from "./common/get-token-id"
-
-export type Branded<A, B> = A & Brand<B>
-
-export interface IntBrand {
-	readonly Int: unique symbol
-}
-
-export type Unpromise<T extends Promise<any>> = T extends Promise<infer U> ? U : never
-
-export type MintResponseOld = Unpromise<ReturnType<ImmutableXClient["mintV2"]>>["results"]
 
 export type MintResponse = {
 	tokenId: string

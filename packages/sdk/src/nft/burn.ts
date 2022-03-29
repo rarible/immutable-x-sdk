@@ -1,8 +1,8 @@
 import { ERC721TokenType } from "@imtbl/imx-link-types"
 import type { Link } from "@imtbl/imx-sdk"
 import { ZERO_ADDRESS } from "@rarible/types"
-import type { TransferResponse } from "./domain"
-import type { Erc721AssetRequest } from "./domain"
+import type { Erc721AssetRequest, TransferResponse } from "./domain"
+import { getTransferResponse } from "./common/get-tranfer-response"
 
 export async function burn(link: Link, request: Erc721AssetRequest): Promise<TransferResponse> {
 	const { assetClass, tokenId, contract } = request
@@ -15,5 +15,6 @@ export async function burn(link: Link, request: Erc721AssetRequest): Promise<Tra
 		tokenAddress: contract,
 		toAddress: ZERO_ADDRESS,
 	}])
-	return result[0]
+	const r = result[0]
+	return getTransferResponse(r)
 }

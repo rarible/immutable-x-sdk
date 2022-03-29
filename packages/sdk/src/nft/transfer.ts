@@ -1,6 +1,7 @@
 import type { Link } from "@imtbl/imx-sdk"
 import { ERC721TokenType } from "@imtbl/imx-sdk"
 import type { TransferRequest, TransferResponse } from "./domain"
+import { getTransferResponse } from "./common/get-tranfer-response"
 
 export async function transfer(link: Link, request: TransferRequest): Promise<TransferResponse> {
 	const { assetClass, contract, tokenId, to } = request
@@ -13,5 +14,6 @@ export async function transfer(link: Link, request: TransferRequest): Promise<Tr
 		tokenAddress: contract,
 		toAddress: to,
 	}])
-	return result[0]
+	const r = result[0]
+	return getTransferResponse(r)
 }
