@@ -1,7 +1,7 @@
 import type { Link } from "@imtbl/imx-sdk"
 import type { Address } from "@rarible/types"
 import type { BigNumberValue } from "@rarible/utils"
-import type { BurnRequest, TransferRequest, TransferResponse } from "./nft/domain"
+import type { Erc721AssetRequest, TransferRequest, TransferResponse } from "./nft/domain"
 import type {
 	BuyRequest,
 	BuyResponse,
@@ -30,7 +30,7 @@ export type ImxOrderSdk = {
 export type ImxNftSdk = {
 	transfer(request: TransferRequest): Promise<TransferResponse>
 	mint(request: MintRequest): Promise<MintResponse>
-	burn(request: BurnRequest): Promise<TransferResponse>
+	burn(request: Erc721AssetRequest): Promise<TransferResponse>
 }
 
 export type RaribleImxSdk = {

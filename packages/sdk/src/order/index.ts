@@ -13,6 +13,7 @@ import type {
 	SellRequest,
 	SellResponse,
 } from "./domain"
+import type { SellResponseRaw } from "./domain"
 
 export async function sell(
 	ethereum: Maybe<Ethereum>,
@@ -29,12 +30,12 @@ export async function sell(
 
 	const { makeAssetType: { tokenId, contract }, takeAssetType, amount, payouts, originFees } = request
 	const currencyContract = takeAssetType.assetClass === "ERC20" ? takeAssetType.contract : undefined
-	return prepared({
-		amount,
+	return await prepared({
 		tokenId,
 		tokenAddress: contract,
 		fees: convertFees([...payouts, ...originFees]),
-		currencyAddress: currencyContract,
+		amount,
+		...currencyContract ? { currencyAddress: currencyContract } : {},
 	}) as unknown as SellResponse
 }
 
@@ -50,9 +51,9 @@ export async function buy(
 	}
 	const userAddress = await ethereum.getFrom()
 	const prepared = await prepareMethod(link, userSdk, toAddress(userAddress), starkKey, link.buy)
-	const { orderIds, fee } = request
+	const { orderId, fee } = request
 	return prepared({
-		orderIds,
+		orderIds: [orderId],
 		fees: convertFees(fee),
 	})
 }
@@ -74,10 +75,6 @@ export async function cancel(
 		orderId,
 	})
 	return {
-		orderId: (result as unknown as {
-			// eslint-disable-next-line camelcase
-			order_id: number,
-			status: string
-		}).order_id.toString(),
+		orderId: (result as unknown as SellResponseRaw).order_id.toString(),
 	}
 }

@@ -1,18 +1,20 @@
 import type { BigNumber, Erc20AssetType, Erc721AssetType, EthAssetType, Part } from "@rarible/ethereum-api-client"
-import type { BigNumberValue } from "@rarible/utils"
 
-export type HasPrice = { price: BigNumberValue } | { priceDecimal: BigNumberValue }
+export type OrderRequest = {
+	payouts: Part[]
+	originFees: Part[]
+}
 
 export type SellRequest = {
 	makeAssetType: Erc721AssetType
 	takeAssetType: EthAssetType | Erc20AssetType
 	amount: BigNumber
-} & HasPrice & OrderRequest
+} & OrderRequest
 
-
-export type OrderRequest = {
-	payouts: Part[]
-	originFees: Part[]
+export type SellResponseRaw = {
+	// eslint-disable-next-line camelcase
+	order_id: number,
+	status: string
 }
 
 export interface SellResponse {
@@ -20,7 +22,7 @@ export interface SellResponse {
 }
 
 export type BuyRequest = {
-	orderIds: string[]
+	orderId: string
 	fee: Part[]
 }
 export type BuyResponse = {

@@ -1,13 +1,16 @@
-import type { Address, Erc721AssetType } from "@rarible/ethereum-api-client"
+import type { Address } from "@rarible/ethereum-api-client"
 import type { Link } from "@imtbl/imx-sdk"
+import type { BigNumber } from "@rarible/types"
 
-export type TransferRequest = {
-	asset: Erc721AssetType,
+export interface Erc721AssetRequest {
+	assetClass: "ERC721"
+	contract: Address
+	tokenId: BigNumber
+}
+
+export type TransferRequest = Erc721AssetRequest & {
 	to: Address
 }
 
-export type BurnRequest = {
-	asset: Erc721AssetType,
-}
-
-export type TransferResponse = ReturnType<Link["transfer"]>
+export type Unpromise<T extends Promise<any>> = T extends Promise<infer U> ? U : never
+export type TransferResponse = Unpromise<ReturnType<Link["transfer"]>>["result"][0]

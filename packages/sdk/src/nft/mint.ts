@@ -1,14 +1,15 @@
 import type { ImmutableMethodParams } from "@imtbl/imx-sdk"
 import { ImmutableXClient } from "@imtbl/imx-sdk"
-import type { Address, Maybe } from "@rarible/types"
+import type { Maybe } from "@rarible/types"
 import { toAddress } from "@rarible/types"
-import type { NftCollectionControllerApi } from "@rarible/ethereum-api-client"
+import type { NftCollectionControllerApi, Part } from "@rarible/ethereum-api-client"
 import type { Ethereum } from "@rarible/ethereum-provider"
 import { AlchemyProvider } from "@ethersproject/providers"
 import { Wallet } from "@ethersproject/wallet"
 import type { Brand } from "io-ts"
 import type { ImxEnv } from "../config/domain"
 import { IMX_CONFIG } from "../config/env"
+import { convertFees } from "../common/convert-fees"
 import { getTokenId } from "./common/get-token-id"
 
 export type Branded<A, B> = A & Brand<B>
@@ -28,8 +29,9 @@ export type MintResponse = {
 }
 
 export type MintRequest = {
-	receiver: Address
 	pk: string
+	metaUrl: string
+	royalties: Part[]
 }
 
 export async function mint(
@@ -43,7 +45,6 @@ export async function mint(
 	}
 	const from = toAddress(await ethereum.getFrom())
 	const {
-		metadataApiUrl,
 		raribleCollection,
 		apiAddress,
 		alchemyApiKey,
@@ -71,18 +72,19 @@ export async function mint(
 	const payload: ImmutableMethodParams.ImmutableOffchainMintV2ParamsTS = [
 		{
 			users: [{
-				etherKey: request.receiver,
+				etherKey: from,
 				tokens: [{
 					id: tokenId.tokenId,
-					blueprint: metadataApiUrl.toLowerCase() + tokenId.tokenId,
+					blueprint: request.metaUrl.toLowerCase() + tokenId.tokenId,
 				}],
 			}],
 			contractAddress: raribleCollection.contractAddress.toLowerCase(),
+			royalties: convertFees(request.royalties),
 		},
 	]
 
 	const { results } = await minter.mintV2(payload)
-	console.log("mint result", results)
+
 	const { token_id: tokenIdResponse, contract_address: contractAddress, tx_id: txId } = results[0]
 	return { tokenId: tokenIdResponse, contractAddress, txId: txId.toString() }
 }
