@@ -68,7 +68,7 @@ export async function mint(
 				}],
 			}],
 			contractAddress: raribleCollection.contractAddress.toLowerCase(),
-			royalties: convertFees(request.royalties),
+			...request.royalties.length ? { royalties: convertFees(request.royalties) } : {},
 		},
 	]
 
