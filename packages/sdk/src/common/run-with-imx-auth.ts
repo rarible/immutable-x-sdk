@@ -16,7 +16,12 @@ export async function prepareMethod<T>(
 	}
 	//todo think about starkKey parameter passing here
 	if (!starkKey) {
-		starkKey = (await userSdk.getUserStarkKeys(userAddress))[0]
+		try {
+			const response = await userSdk.getUserStarkKeys(userAddress)
+			starkKey = response[0]
+		} catch {
+		}
+
 		if (!starkKey) {
 			starkKey = (await link.setup({})).starkPublicKey
 		}
