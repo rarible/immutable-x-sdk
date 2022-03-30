@@ -57,3 +57,5 @@ export function createImxSdk(
 		},
 	}
 }
+
+export { IMX_CONFIG, RARIBLE_IMX_ENV_CONFIG } from "./config/env"

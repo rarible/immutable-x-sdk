@@ -1,6 +1,6 @@
 import type { ImmutableMethodParams } from "@imtbl/imx-sdk"
 import { ImmutableXClient } from "@imtbl/imx-sdk"
-import type { Maybe } from "@rarible/types"
+import type { Address, Maybe } from "@rarible/types"
 import { toAddress } from "@rarible/types"
 import type { NftCollectionControllerApi, Part } from "@rarible/ethereum-api-client"
 import type { Ethereum } from "@rarible/ethereum-provider"
@@ -21,6 +21,7 @@ export type MintRequest = {
 	pk: string
 	metaUrl: string
 	royalties: Part[]
+	collection: Address
 }
 
 export async function mint(
@@ -34,7 +35,6 @@ export async function mint(
 	}
 	const from = await ethereum.getFrom()
 	const {
-		raribleCollection,
 		apiAddress,
 		alchemyApiKey,
 		starkContractAddress,
@@ -56,7 +56,7 @@ export async function mint(
 		enableDebug: false,
 	})
 
-	let tokenId = await getTokenId(nftCollectionApi, toAddress(raribleCollection.contractAddress), toAddress(from))
+	let tokenId = await getTokenId(nftCollectionApi, request.collection, toAddress(from))
 
 	const payload: ImmutableMethodParams.ImmutableOffchainMintV2ParamsTS = [
 		{
@@ -67,7 +67,7 @@ export async function mint(
 					blueprint: request.metaUrl.toLowerCase() + tokenId.tokenId,
 				}],
 			}],
-			contractAddress: raribleCollection.contractAddress.toLowerCase(),
+			contractAddress: request.collection,
 			...request.royalties.length ? { royalties: convertFees(request.royalties) } : {},
 		},
 	]

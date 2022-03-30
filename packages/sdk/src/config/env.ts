@@ -28,7 +28,7 @@ export const IMX_CONFIG: ImxEnvConfig = {
 		alchemyApiKey: "GG27RjfvRVU073Kh33GjnfWQEk_1BFx8",
 		metadataApiUrl: "https://gateway.pinata.cloud/ipfs/QmQoiMLbJD7z4GiH2VogTcGKAG67nnucUixK9rG94WyhTU",
 		raribleCollection: {
-			contractAddress: "0x81B5265FAab3112fA189C2d4cF5e20159d04DE89", // todo
+			contractAddress: "0x582c911b50BCF07A7f9fb9b40a877Eff6825f875", // todo
 		},
 		starkContractAddress: "0x4527BE8f31E2ebFbEF4fCADDb5a17447B27d2aef",
 		registrationAddress: "0x6C21EC8DE44AE44D0992ec3e2d9f1aBb6207D864",

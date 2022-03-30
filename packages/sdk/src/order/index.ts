@@ -12,8 +12,8 @@ import type {
 	CancelOrderResponse,
 	SellRequest,
 	SellResponse,
+	SellResponseRaw,
 } from "./domain"
-import type { SellResponseRaw } from "./domain"
 
 export async function sell(
 	ethereum: Maybe<Ethereum>,
