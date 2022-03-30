@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-alpha.6](https://github.com/compare/v0.0.3-alpha.5...v0.0.3-alpha.6) (2022-03-30)
+
+
+### Bug Fixes
+
+* add new contract to config, refactor mintRequest ([348c2dd](https://github.com/commit/348c2ddc6f846a7d535e009b84b6ac071bf8c4ce))
+
+
+
+
+
 ## [0.0.3-alpha.5](https://github.com/compare/v0.0.3-alpha.4...v0.0.3-alpha.5) (2022-03-30)
 
 
