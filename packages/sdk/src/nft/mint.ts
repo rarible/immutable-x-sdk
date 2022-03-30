@@ -32,7 +32,7 @@ export async function mint(
 	if (ethereum === undefined) {
 		throw new Error("Wallet undefined")
 	}
-	const from = toAddress(await ethereum.getFrom())
+	const from = await ethereum.getFrom()
 	const {
 		raribleCollection,
 		apiAddress,
@@ -56,7 +56,7 @@ export async function mint(
 		enableDebug: false,
 	})
 
-	let tokenId = await getTokenId(nftCollectionApi, raribleCollection.contractAddress, from)
+	let tokenId = await getTokenId(nftCollectionApi, raribleCollection.contractAddress, toAddress(from))
 
 	const payload: ImmutableMethodParams.ImmutableOffchainMintV2ParamsTS = [
 		{
