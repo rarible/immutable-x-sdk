@@ -3,6 +3,18 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-alpha.5](https://github.com/compare/v0.0.3-alpha.4...v0.0.3-alpha.5) (2022-03-30)
+
+
+### Bug Fixes
+
+* mint method receiver address ([5a39503](https://github.com/commit/5a395036abea77b682d59202a6049d3186013687))
+* sdk config ([1236299](https://github.com/commit/12362998b48ce088cae04d3abb0c1563e6de1b84))
+
+
+
+
+
 ## [0.0.3-alpha.4](https://github.com/compare/v0.0.3-alpha.3...v0.0.3-alpha.4) (2022-03-29)
 
 

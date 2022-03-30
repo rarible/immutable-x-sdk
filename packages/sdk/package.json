@@ -1,6 +1,6 @@
 {
   "name": "@rarible/immutable-sdk",
-  "version": "0.0.3-alpha.4",
+  "version": "0.0.3-alpha.5",
   "description": "SDK for interact with immutable blockchain and Rarible protocol",
   "repository": "https://github.com/rarible/",
   "license": "MIT",
