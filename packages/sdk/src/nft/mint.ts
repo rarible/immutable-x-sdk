@@ -56,7 +56,7 @@ export async function mint(
 		enableDebug: false,
 	})
 
-	let tokenId = await getTokenId(nftCollectionApi, raribleCollection.contractAddress, toAddress(from))
+	let tokenId = await getTokenId(nftCollectionApi, toAddress(raribleCollection.contractAddress), toAddress(from))
 
 	const payload: ImmutableMethodParams.ImmutableOffchainMintV2ParamsTS = [
 		{

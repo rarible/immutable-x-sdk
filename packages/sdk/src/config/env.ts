@@ -1,4 +1,4 @@
-import { toAddress, ZERO_ADDRESS } from "@rarible/types"
+import { ZERO_ADDRESS } from "@rarible/types"
 import type { ImxEnvConfig, RaribleImxEnvConfig } from "./domain"
 
 export const IMX_CONFIG: ImxEnvConfig = {
@@ -11,7 +11,7 @@ export const IMX_CONFIG: ImxEnvConfig = {
 		metadataApiUrl: "https://gateway.pinata.cloud/ipfs/QmQoiMLbJD7z4GiH2VogTcGKAG67nnucUixK9rG94WyhTU",
 		alchemyApiKey: "", //todo
 		raribleCollection: {
-			contractAddress: toAddress(ZERO_ADDRESS.toLowerCase()), // todo
+			contractAddress: ZERO_ADDRESS, // todo
 		},
 		starkContractAddress: "0x5FDCCA53617f4d2b9134B29090C87D01058e27e9",
 		registrationAddress: "0x72a06bf2a1CE5e39cBA06c0CAb824960B587d64c",
@@ -28,7 +28,7 @@ export const IMX_CONFIG: ImxEnvConfig = {
 		alchemyApiKey: "GG27RjfvRVU073Kh33GjnfWQEk_1BFx8",
 		metadataApiUrl: "https://gateway.pinata.cloud/ipfs/QmQoiMLbJD7z4GiH2VogTcGKAG67nnucUixK9rG94WyhTU",
 		raribleCollection: {
-			contractAddress: toAddress("0x81B5265FAab3112fA189C2d4cF5e20159d04DE89".toLowerCase()), // todo
+			contractAddress: "0x81B5265FAab3112fA189C2d4cF5e20159d04DE89", // todo
 		},
 		starkContractAddress: "0x4527BE8f31E2ebFbEF4fCADDb5a17447B27d2aef",
 		registrationAddress: "0x6C21EC8DE44AE44D0992ec3e2d9f1aBb6207D864",
