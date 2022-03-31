@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-alpha.7](https://github.com/compare/v0.0.3-alpha.6...v0.0.3-alpha.7) (2022-03-31)
+
+
+### Bug Fixes
+
+* add check for imx registration to all methods ([6fb0c22](https://github.com/commit/6fb0c2287788fea5a3b45de8ffbfec38835fb670))
+
+
+
+
+
 ## [0.0.3-alpha.6](https://github.com/compare/v0.0.3-alpha.5...v0.0.3-alpha.6) (2022-03-30)
 
 
