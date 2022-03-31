@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-alpha.9](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.8...v0.0.3-alpha.9) (2022-03-31)
+
+
+### Bug Fixes
+
+* remove wallet func ([4f0d4b4](https://github.com/rarible/immutable-x-sdk/commit/4f0d4b491b3d2c987bd534e089b4fffabd401aa9))
+
+
+
+
+
 ## [0.0.3-alpha.8](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.7...v0.0.3-alpha.8) (2022-03-31)
 
 
