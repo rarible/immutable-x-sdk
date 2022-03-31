@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-alpha.8](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.7...v0.0.3-alpha.8) (2022-03-31)
+
+
+### Features
+
+* wallet draft ([32f4b6a](https://github.com/rarible/immutable-x-sdk/commit/32f4b6ae170d475b4209ea2bffe1ac5873e41791))
+
+
+
+
+
 ## [0.0.3-alpha.7](https://github.com/compare/v0.0.3-alpha.6...v0.0.3-alpha.7) (2022-03-31)
 
 
