@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-alpha.10](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.9...v0.0.3-alpha.10) (2022-03-31)
+
+
+### Bug Fixes
+
+* convertFees method to basis point ([ec64f02](https://github.com/rarible/immutable-x-sdk/commit/ec64f02c4e866a472d927a11bcb485fdf37cc51f))
+
+
+
+
+
 ## [0.0.3-alpha.8](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.7...v0.0.3-alpha.8) (2022-03-31)
 
 
