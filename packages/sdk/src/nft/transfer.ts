@@ -1,14 +1,20 @@
 import type { Link } from "@imtbl/imx-sdk"
 import { ERC721TokenType } from "@imtbl/imx-sdk"
+import type { PreparedMethod } from "../common/run-with-imx-auth"
 import type { TransferRequest, TransferResponse } from "./domain"
 import { getTransferResponse } from "./common/get-tranfer-response"
 
-export async function transfer(link: Link, request: TransferRequest): Promise<TransferResponse> {
+export async function transfer(
+	link: Link,
+	preparedMethod: PreparedMethod,
+	request: TransferRequest,
+): Promise<TransferResponse> {
 	const { assetClass, contract, tokenId, to } = request
 	if (assetClass !== ERC721TokenType.ERC721) {
 		throw new Error("Unsupported assetClass")
 	}
-	const { result } = await link.transfer([{
+	const prepared = await preparedMethod(link.transfer)
+	const { result } = await prepared([{
 		type: ERC721TokenType.ERC721,
 		tokenId,
 		tokenAddress: contract,

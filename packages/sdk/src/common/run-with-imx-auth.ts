@@ -1,23 +1,27 @@
-import type { Address, Maybe } from "@rarible/types"
+import type { Maybe } from "@rarible/types"
 import { toAddress } from "@rarible/types"
 import type { Link } from "@imtbl/imx-sdk"
+import type { Ethereum } from "@rarible/ethereum-provider"
 import type { ImxUser } from "../user/user"
+
+export type PreparedMethod = <T>(method: T) => Promise<T>
 
 // todo write tests
 export async function prepareMethod<T>(
 	link: Link,
 	userSdk: ImxUser,
-	userAddress: Address,
+	ethereum: Maybe<Ethereum>,
 	starkKey: Maybe<string>,
 	method: T,
 ): Promise<T> {
-	if (!userAddress) {
-		throw new Error("Ethereum address is undefined")
+	if (ethereum === undefined) {
+		throw new Error("Wallet undefined")
 	}
+	const userAddress = await ethereum.getFrom()
 	//todo think about starkKey parameter passing here
 	if (!starkKey) {
 		try {
-			const response = await userSdk.getUserStarkKeys(userAddress)
+			const response = await userSdk.getUserStarkKeys(toAddress(userAddress))
 			starkKey = response[0]
 		} catch {
 		}

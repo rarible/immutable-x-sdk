@@ -9,6 +9,7 @@ import { Wallet } from "@ethersproject/wallet"
 import type { ImxEnv } from "../config/domain"
 import { IMX_CONFIG } from "../config/env"
 import { convertFees } from "../common/convert-fees"
+import type { PreparedMethod } from "../common/run-with-imx-auth"
 import { getTokenId } from "./common/get-token-id"
 
 export type MintResponse = {
@@ -27,6 +28,7 @@ export type MintRequest = {
 export async function mint(
 	ethereum: Maybe<Ethereum>,
 	network: ImxEnv,
+	prepareMethod: PreparedMethod,
 	nftCollectionApi: NftCollectionControllerApi,
 	request: MintRequest,
 ): Promise<MintResponse> {
@@ -71,8 +73,8 @@ export async function mint(
 			...request.royalties.length ? { royalties: convertFees(request.royalties) } : {},
 		},
 	]
-
-	const { results } = await minter.mintV2(payload)
+	const prepared = await prepareMethod(minter.mintV2)
+	const { results } = await prepared(payload)
 
 	const { token_id: tokenIdResponse, contract_address: contractAddress, tx_id: txId } = results[0]
 	return { tokenId: tokenIdResponse, contractAddress, txId: txId.toString() }

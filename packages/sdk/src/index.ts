@@ -13,6 +13,8 @@ import type { RaribleImxEnv } from "./config/domain"
 import { RARIBLE_IMX_ENV_CONFIG } from "./config/env"
 import { mint } from "./nft/mint"
 import { burn } from "./nft/burn"
+import type { PreparedMethod } from "./common/run-with-imx-auth"
+import { prepareMethod } from "./common/run-with-imx-auth"
 
 export function createImxSdk(
 	ethereum: Maybe<Ethereum>,
@@ -37,17 +39,18 @@ export function createImxSdk(
 	const userSdk = new ImxUser(new ImxUserControllerApi(defaultApiConfig))
 
 	const configuredLink = new Link(linkAddress)
+	const preparedRequest: PreparedMethod = partialCall(prepareMethod, configuredLink, userSdk, ethereum, starkKey)
 
 	return {
 		nft: {
-			transfer: transfer.bind(null, configuredLink),
-			mint: mint.bind(null, ethereum, imxNetwork, nftCollectionApi),
-			burn: burn.bind(null, configuredLink),
+			transfer: transfer.bind(null, configuredLink, preparedRequest),
+			mint: mint.bind(null, ethereum, imxNetwork, preparedRequest, nftCollectionApi),
+			burn: burn.bind(null, configuredLink, preparedRequest),
 		},
 		order: {
-			sell: sell.bind(null, ethereum, configuredLink, userSdk, starkKey),
-			buy: buy.bind(null, ethereum, configuredLink, userSdk, starkKey),
-			cancel: cancel.bind(null, ethereum, configuredLink, userSdk, starkKey),
+			sell: sell.bind(null, configuredLink, preparedRequest),
+			buy: buy.bind(null, configuredLink, preparedRequest),
+			cancel: cancel.bind(null, configuredLink, preparedRequest),
 		},
 		balance: {
 			getBalance: balancesSdk.getBalance,
@@ -56,6 +59,14 @@ export function createImxSdk(
 			registerImx: async () => configuredLink.setup({}),
 		},
 	}
+}
+
+type Arr = readonly unknown[]
+
+function partialCall<T extends Arr, U extends Arr, R>(
+	f: (...args: [...T, ...U]) => R, ...headArgs: T
+): (...tailArgs: U) => R {
+	return (...tailArgs: U) => f(...headArgs, ...tailArgs)
 }
 
 export { IMX_CONFIG, RARIBLE_IMX_ENV_CONFIG } from "./config/env"

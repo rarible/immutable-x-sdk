@@ -1,10 +1,6 @@
 import type { Link } from "@imtbl/imx-sdk"
-import type { Ethereum } from "@rarible/ethereum-provider"
-import type { Maybe } from "@rarible/types"
-import { toAddress } from "@rarible/types"
 import { convertFees } from "../common/convert-fees"
-import type { ImxUser } from "../user/user"
-import { prepareMethod } from "../common/run-with-imx-auth"
+import type { PreparedMethod } from "../common/run-with-imx-auth"
 import type {
 	BuyRequest,
 	BuyResponse,
@@ -16,18 +12,12 @@ import type {
 } from "./domain"
 
 export async function sell(
-	ethereum: Maybe<Ethereum>,
 	link: Link,
-	userSdk: ImxUser,
-	starkKey: Maybe<string>,
+	preparedMethod: PreparedMethod,
 	request: SellRequest,
 ): Promise<SellResponse> {
-	if (ethereum === undefined) {
-		throw new Error("Wallet undefined")
-	}
-	const userAddress = await ethereum.getFrom()
-	const prepared = await prepareMethod(link, userSdk, toAddress(userAddress), starkKey, link.sell)
 
+	const prepared = await preparedMethod(link.sell)
 	const { makeAssetType: { tokenId, contract }, takeAssetType, amount, payouts, originFees } = request
 	const currencyContract = takeAssetType.assetClass === "ERC20" ? takeAssetType.contract : undefined
 	return await prepared({
@@ -40,17 +30,12 @@ export async function sell(
 }
 
 export async function buy(
-	ethereum: Maybe<Ethereum>,
 	link: Link,
-	userSdk: ImxUser,
-	starkKey: Maybe<string>,
+	prepareMethod: PreparedMethod,
 	request: BuyRequest,
 ): Promise<BuyResponse> {
-	if (ethereum === undefined) {
-		throw new Error("Wallet undefined")
-	}
-	const userAddress = await ethereum.getFrom()
-	const prepared = await prepareMethod(link, userSdk, toAddress(userAddress), starkKey, link.buy)
+
+	const prepared = await prepareMethod(link.buy)
 	const { orderId, fee } = request
 	return prepared({
 		orderIds: [orderId],
@@ -59,17 +44,12 @@ export async function buy(
 }
 
 export async function cancel(
-	ethereum: Maybe<Ethereum>,
 	link: Link,
-	userSdk: ImxUser,
-	starkKey: Maybe<string>,
+	preparedMethod: PreparedMethod,
 	request: CancelOrderRequest,
 ): Promise<CancelOrderResponse> {
-	if (ethereum === undefined) {
-		throw new Error("Wallet undefined")
-	}
-	const userAddress = await ethereum.getFrom()
-	const prepared = await prepareMethod(link, userSdk, toAddress(userAddress), starkKey, link.cancel)
+
+	const prepared = await preparedMethod(link.cancel)
 	const { orderId } = request
 	const result = await prepared({
 		orderId,
