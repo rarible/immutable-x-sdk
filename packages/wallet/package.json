@@ -2,7 +2,7 @@
   "name": "@rarible/immutable-wallet",
   "version": "0.0.1-alpha.0",
   "description": "Immutable wallet util",
-  "repository": "https://github.com/rarible/",
+  "repository": "https://github.com/rarible/immutable-x-sdk",
   "license": "MIT",
   "main": "build/index.js",
   "types": "build/index.d.ts",
