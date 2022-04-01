@@ -15,5 +15,7 @@ export function getTransferResponse(r: ImxTransferResponse): TransferResponse {
 		case "error": {
 			throw new Error(r.message)
 		}
+		default:
+			throw new Error("Unknown imx transfer response")
 	}
 }

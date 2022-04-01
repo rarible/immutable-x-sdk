@@ -2,7 +2,7 @@ import type { Link } from "@imtbl/imx-sdk"
 import { ERC721TokenType } from "@imtbl/imx-sdk"
 import type { PreparedMethod } from "../common/run-with-imx-auth"
 import type { TransferRequest, TransferResponse } from "./domain"
-import { getTransferResponse } from "./common/get-tranfer-response"
+import { getTransferResponse } from "./common/get-transfer-response"
 
 export async function transfer(
 	link: Link,

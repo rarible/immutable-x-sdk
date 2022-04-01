@@ -3,7 +3,7 @@ import type { Link } from "@imtbl/imx-sdk"
 import { ZERO_ADDRESS } from "@rarible/types"
 import type { PreparedMethod } from "../common/run-with-imx-auth"
 import type { Erc721AssetRequest, TransferResponse } from "./domain"
-import { getTransferResponse } from "./common/get-tranfer-response"
+import { getTransferResponse } from "./common/get-transfer-response"
 
 export async function burn(
 	link: Link,
