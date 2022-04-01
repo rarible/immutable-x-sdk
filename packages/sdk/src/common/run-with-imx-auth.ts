@@ -38,7 +38,7 @@ export async function prepareMethod<T>(
 		) {
 			return method
 		} else {
-			throw new Error("Registration in Imx filed, please try again")
+			throw new Error("Registration in Imx filed, please try login again")
 		}
 	} else {
 		return method
