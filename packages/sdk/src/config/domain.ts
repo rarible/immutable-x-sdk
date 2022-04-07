@@ -6,15 +6,15 @@ export type ImxConfig = {
 	imxNetwork: ImxEnv
 	raribleImxApiUrl: string
 	linkAddress: string
-	apiAddress: string
-	apiAddressV2: string
+	publicApiUrl: string
+	publicApiUrlV2: string
 	metadataApiUrl: string
 	alchemyApiKey: string
 	raribleCollection: {
 		contractAddress: string
 	}
 	starkContractAddress: string
-	registrationAddress: string
+	registrationContractAddress: string
 	gasLimit: string
 	gasPrice: string
 	enableDebug: boolean

@@ -37,10 +37,10 @@ export async function mint(
 	}
 	const from = await ethereum.getFrom()
 	const {
-		apiAddress,
+		publicApiUrl,
 		alchemyApiKey,
 		starkContractAddress,
-		registrationAddress,
+		registrationContractAddress,
 		gasLimit,
 		gasPrice,
 	} = IMX_CONFIG[network]
@@ -49,10 +49,10 @@ export async function mint(
 	const wallet = new Wallet(request.pk)//todo
 	const signer = wallet.connect(provider)
 	const minter = await ImmutableXClient.build({
-		publicApiUrl: apiAddress,
+		publicApiUrl,
 		signer,
 		starkContractAddress,
-		registrationContractAddress: registrationAddress,
+		registrationContractAddress,
 		gasLimit,
 		gasPrice,
 		enableDebug: false,
