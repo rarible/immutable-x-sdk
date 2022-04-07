@@ -1,3 +1,4 @@
+import type { Address} from "@rarible/types"
 import { ZERO_ADDRESS } from "@rarible/types"
 import type { ImxEnvConfig, RaribleImxEnvConfig } from "./domain"
 
@@ -18,6 +19,10 @@ export const IMX_CONFIG: ImxEnvConfig = {
 		gasPrice: "40000000000",
 		gasLimit: "7000000",
 		enableDebug: false,
+		protocolFee: {
+			sellerFee: { account: "" as Address, value: 250 },
+			buyerFee: { account: "" as Address, value: 250 },
+		},
 	},
 	ropsten: {
 		imxNetwork: "ropsten",
@@ -35,6 +40,10 @@ export const IMX_CONFIG: ImxEnvConfig = {
 		gasPrice: "40000000000",
 		gasLimit: "7000000",
 		enableDebug: true,
+		protocolFee: {
+			sellerFee: { account: "" as Address, value: 250 },
+			buyerFee: { account: "" as Address, value: 250 },
+		},
 	},
 }
 
