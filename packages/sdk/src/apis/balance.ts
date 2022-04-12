@@ -1,7 +1,6 @@
-/* tslint:disable */
 import type { BigNumberT } from "@imtbl/imx-sdk"
-import type { ApiResponse, HTTPHeaders, HTTPQuery} from "./runtime"
-import { BaseImxSdkAPI, JSONApiResponse, RequiredError } from "./runtime"
+import type { ApiResponse, HTTPHeaders, HTTPQuery } from "@rarible/ethereum-api-client"
+import { BaseAPI, JSONApiResponse, RequiredError } from "@rarible/ethereum-api-client"
 
 export interface GetAllBalancesRequest {
 	ownerAddress: string;
@@ -18,7 +17,7 @@ export interface GetAllBalancesResponse {
 }
 
 
-export class ImxBalanceControllerApi extends BaseImxSdkAPI {
+export class ImxBalanceControllerApi extends BaseAPI {
 
 	async getAllBalancesRaw(
 		requestParameters: GetAllBalancesRequest,
@@ -37,7 +36,7 @@ export class ImxBalanceControllerApi extends BaseImxSdkAPI {
 			headers: headerParameters,
 			query: queryParameters,
 		})
-		// @ts-ignore
+
 		return new JSONApiResponse(response, (jsonValue) => jsonValue as GetAllBalancesResponse)
 
 	}

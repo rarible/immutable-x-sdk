@@ -5,10 +5,9 @@ import { Configuration, NftCollectionControllerApi } from "@rarible/ethereum-api
 import type { RaribleImxSdk } from "./domain"
 import { transfer } from "./nft/transfer"
 import { buy, cancel, sell } from "./order"
-import { ImxBalanceControllerApi, RaribleImxApiConfiguration } from "./apis"
+import { ImxBalanceControllerApi, ImxUserControllerApi } from "./apis"
 import { ImxBalances } from "./balance/balance"
 import { ImxUser } from "./user/user"
-import { ImxUserControllerApi } from "./apis/user"
 import type { RaribleImxEnv } from "./config/domain"
 import { RARIBLE_IMX_ENV_CONFIG } from "./config/env"
 import { mint } from "./nft/mint"
@@ -25,17 +24,17 @@ export function createImxSdk(
 		linkAddress,
 		apiAddress,
 		apiAddressV2,
-		raribleImxApiUrl,
+		raribleEthereumApiUrl,
 		imxNetwork,
 	} = RARIBLE_IMX_ENV_CONFIG[env]
 
-	const raribleApiConfig = new Configuration({ basePath: raribleImxApiUrl })
-	const nftCollectionApi = new NftCollectionControllerApi(raribleApiConfig)
+	const raribleEthereumApiConfig = new Configuration({ basePath: raribleEthereumApiUrl })
+	const nftCollectionApi = new NftCollectionControllerApi(raribleEthereumApiConfig)
 
-	const balanceApiConfig = new RaribleImxApiConfiguration({ basePath: apiAddressV2 })
+	const balanceApiConfig = new Configuration({ basePath: apiAddressV2 })
 	const balancesSdk = new ImxBalances(new ImxBalanceControllerApi(balanceApiConfig))
 
-	const defaultApiConfig = new RaribleImxApiConfiguration({ basePath: apiAddress })
+	const defaultApiConfig = new Configuration({ basePath: apiAddress })
 	const userSdk = new ImxUser(new ImxUserControllerApi(defaultApiConfig))
 
 	const configuredLink = new Link(linkAddress)

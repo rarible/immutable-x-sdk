@@ -1,6 +1,5 @@
-/* tslint:disable */
-import type { ApiResponse, HTTPHeaders, HTTPQuery} from "./runtime"
-import { BaseImxSdkAPI, JSONApiResponse, RequiredError } from "./runtime"
+import type { ApiResponse, HTTPHeaders, HTTPQuery } from "@rarible/ethereum-api-client"
+import { BaseAPI, JSONApiResponse, RequiredError } from "@rarible/ethereum-api-client"
 
 export interface GetImxUserStarkKeysRequest {
 	address: string;
@@ -11,7 +10,7 @@ export interface GetImxUserStarkKeysResponse {
 }
 
 
-export class ImxUserControllerApi extends BaseImxSdkAPI {
+export class ImxUserControllerApi extends BaseAPI {
 
 	async getImxUserStarkKeysRaw(
 		requestParameters: GetImxUserStarkKeysRequest,
@@ -30,7 +29,7 @@ export class ImxUserControllerApi extends BaseImxSdkAPI {
 			headers: headerParameters,
 			query: queryParameters,
 		})
-		// @ts-ignore
+
 		return new JSONApiResponse(response, (jsonValue) => jsonValue as GetImxUserStarkKeysResponse)
 
 	}
