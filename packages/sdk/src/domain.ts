@@ -12,6 +12,7 @@ import type {
 } from "./order/domain"
 import type { BalanceRequestAssetType } from "./balance/balance"
 import type { MintRequest, MintResponse } from "./nft/mint"
+import type { ImxProtocolFee, RaribleImxEnv } from "./config/domain"
 
 export type ImxFee = { recipient: string, percentage: number }
 
@@ -25,6 +26,7 @@ export type ImxOrderSdk = {
 	buy(request: BuyRequest): Promise<BuyResponse>
 	sell(request: SellRequest): Promise<SellResponse>
 	cancel(request: CancelOrderRequest): Promise<CancelOrderResponse>
+	getOrderFee(request: RaribleImxEnv): ImxProtocolFee
 }
 
 export type ImxNftSdk = {

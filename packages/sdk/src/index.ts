@@ -15,6 +15,7 @@ import { mint } from "./nft/mint"
 import { burn } from "./nft/burn"
 import type { PreparedMethod } from "./common/run-with-imx-auth"
 import { prepareMethod } from "./common/run-with-imx-auth"
+import { getProtocolFee } from "./common/get-protocol-fee"
 
 export function createImxSdk(
 	ethereum: Maybe<Ethereum>,
@@ -51,6 +52,7 @@ export function createImxSdk(
 			sell: sell.bind(null, configuredLink, preparedRequest),
 			buy: buy.bind(null, configuredLink, preparedRequest),
 			cancel: cancel.bind(null, configuredLink, preparedRequest),
+			getOrderFee: getProtocolFee.bind(null, env),
 		},
 		balance: {
 			getBalance: balancesSdk.getBalance,
