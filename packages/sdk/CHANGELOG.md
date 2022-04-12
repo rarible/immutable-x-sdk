@@ -3,6 +3,23 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3-alpha.11](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.10...v0.0.3-alpha.11) (2022-04-12)
+
+
+### Bug Fixes
+
+* add todos to congig file ([af718dc](https://github.com/rarible/immutable-x-sdk/commit/af718dc9a87c44f5c03013954b08fa25d44c5147))
+* update deps ([4beebb7](https://github.com/rarible/immutable-x-sdk/commit/4beebb7a049889e22ba065b832be87036c98aac9))
+
+
+### Features
+
+* added getOrderFee method ([f558c3e](https://github.com/rarible/immutable-x-sdk/commit/f558c3e1a32d418aa42d9c97d2005315ce48623a))
+
+
+
+
+
 ## [0.0.3-alpha.10](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.9...v0.0.3-alpha.10) (2022-03-31)
 
 
