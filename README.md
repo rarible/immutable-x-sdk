@@ -10,7 +10,7 @@ yarn add @rarible/immutable-sdk @imtbl/imx-sdk @imtbl/imx-link-sdk
 
 ## Usage
 
-SDK is written in TypeScript. You can use typing to explore SDK possibilities.
+SDK is written in TypeScript. You can use typings to explore SDK possibilities.
 
 ### Initialization
 
