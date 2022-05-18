@@ -1034,10 +1034,10 @@
     monocle-ts "^2.3.5"
     newtype-ts "^0.3.4"
 
-"@imtbl/imx-sdk@^1.14.1":
-  version "1.14.1"
-  resolved "https://registry.yarnpkg.com/@imtbl/imx-sdk/-/imx-sdk-1.14.1.tgz#945a2d8c17924ebc33c47c5b325c6a65508cbfeb"
-  integrity sha512-W9CIlrxKOTN4MmRjDo4QRXNFGMrRF/MZTHlT3jFpbnlqIS3sL7G23D0W2FoEK4+SRTEB4ubg4ydJ27K3FMBZ/A==
+"@imtbl/imx-sdk@^1.19.0":
+  version "1.19.0"
+  resolved "https://registry.yarnpkg.com/@imtbl/imx-sdk/-/imx-sdk-1.19.0.tgz#20b7e5bc495cc3adf3201d53a19492bf5ce0c478"
+  integrity sha512-byRg5UWi4cq6VqRfdukF+XYuUsRm5oAyeAC+zDrirf7VLK+2rRwzVwXKCX0HLNpHI6yvNs/Mul/YSbKxvuKxnQ==
   dependencies:
     "@ethersproject/abstract-signer" "^5.6.0"
     "@ethersproject/address" "^5.6.0"
