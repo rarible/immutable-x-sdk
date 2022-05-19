@@ -1,17 +1,22 @@
-export type ImxEnv = "mainnet" | "ropsten"
-export type RaribleImxEnv = "e2e" | "dev" | "staging" | "prod" | "development"
+export type ImxNetwork = "mainnet" | "ropsten"
+export type ImxEnv = "e2e" | "dev" | "staging" | "prod" | "development"
 
 export type ImxWalletProviderName = "METAMASK" | "MAGIC_LINK" | "WALLET_CONNECT" | "NONE"
 
 
-export type ImxWalletConfig = {
-	chainName: ImxEnv
+export type ImxNetworkConfig = {
+	network: ImxNetwork
 	linkAddress: string
 	gasLimit?: string
 	gasPrice?: string
 	enableDebug?: boolean
 }
 
-export type ImxEnvConfig = Record<ImxEnv, ImxWalletConfig>
+export type ImxConnectResult = {
+	address: string
+	ethNetwork: string
+	providerPreference: string
+	starkPublicKey: string
+}
 
-export type RaribleImxEnvConfig = Record<RaribleImxEnv, ImxWalletConfig>
+export type ImxWalletConnectionStatus = "connected" | "disconnected"

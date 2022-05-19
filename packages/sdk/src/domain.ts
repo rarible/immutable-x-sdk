@@ -1,7 +1,6 @@
-import type { Link } from "@imtbl/imx-sdk"
 import type { Address } from "@rarible/types"
 import type { BigNumberValue } from "@rarible/utils"
-import type { RaribleImxEnv } from "@rarible/immutable-wallet"
+import type { ImxEnv } from "@rarible/immutable-wallet"
 import type { Erc721AssetRequest, TransferRequest, TransferResponse } from "./nft/domain"
 import type {
 	BuyRequest,
@@ -19,15 +18,11 @@ export type ImxFee = { recipient: string, percentage: number }
 
 export type ImxBlockchainTx = void
 
-export type ImxWallet = {
-	registerImx(): ReturnType<Link["setup"]>
-}
-
 export type ImxOrderSdk = {
 	buy(request: BuyRequest): Promise<BuyResponse>
 	sell(request: SellRequest): Promise<SellResponse>
 	cancel(request: CancelOrderRequest): Promise<CancelOrderResponse>
-	getOrderFee(request: RaribleImxEnv): ImxProtocolFee
+	getOrderFee(request: ImxEnv): ImxProtocolFee
 }
 
 export type ImxNftSdk = {
@@ -37,7 +32,6 @@ export type ImxNftSdk = {
 }
 
 export type RaribleImxSdk = {
-	wallet: ImxWallet
 	order: ImxOrderSdk
 	nft: ImxNftSdk
 	balance: ImxBalancesSdk

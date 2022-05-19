@@ -8,9 +8,7 @@ import { burn } from "./nft/burn"
 import { getProtocolFee } from "./common/get-protocol-fee"
 import { getBalance } from "./balance/balance"
 
-export function createImxSdk(
-	wallet: Maybe<ImxWallet>,
-): RaribleImxSdk {
+export function createImxSdk(wallet: Maybe<ImxWallet>): RaribleImxSdk {
 
 	return {
 		nft: {
@@ -22,21 +20,13 @@ export function createImxSdk(
 			sell: sell.bind(null, wallet),
 			buy: buy.bind(null, wallet),
 			cancel: cancel.bind(null, wallet),
-			getOrderFee: getProtocolFee.bind(null, wallet?.getConfig().env || "prod"),
+			getOrderFee: getProtocolFee.bind(null, wallet?.getNetworkConfig().env || "prod"),
 		},
 		balance: {
-			getBalance: getBalance.bind(null, wallet?.getConfig().env || "prod"),
-		},
-		wallet: {
-			registerImx: async () => wallet?.connect() || {
-				address: "",
-				starkPublicKey: "",
-				ethNetwork: "",
-				providerPreference: "",
-			},
+			getBalance: getBalance.bind(null, wallet?.getNetworkConfig().env || "prod"),
 		},
 	}
 }
 
-export { IMX_CONFIG, RARIBLE_IMX_ENV_CONFIG } from "./config/env"
+export { IMX_CONFIG, IMX_ENV_CONFIG } from "./config/env"
 export { getBalance } from "./balance/balance"

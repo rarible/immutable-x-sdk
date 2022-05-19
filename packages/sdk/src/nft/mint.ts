@@ -7,7 +7,7 @@ import { Configuration, NftCollectionControllerApi } from "@rarible/ethereum-api
 import { AlchemyProvider } from "@ethersproject/providers"
 import { Wallet } from "@ethersproject/wallet"
 import type { ImxEnv, ImxWallet } from "@rarible/immutable-wallet"
-import { IMX_CONFIG } from "../config/env"
+import { IMX_ENV_CONFIG } from "../config/env"
 import { convertFees } from "../common/convert-fees"
 import { getTokenId } from "./common/get-token-id"
 
@@ -40,12 +40,12 @@ export async function mint(
 		gasLimit,
 		gasPrice,
 		raribleEthereumApiUrl,
-	} = IMX_CONFIG[ethNetwork as ImxEnv]
+	} = IMX_ENV_CONFIG[ethNetwork as ImxEnv]
 	const raribleEthereumApiConfig = new Configuration({ basePath: raribleEthereumApiUrl })
 	const nftCollectionApi = new NftCollectionControllerApi(raribleEthereumApiConfig)
-	//todo move to root
+
 	const provider = new AlchemyProvider(ethNetwork, alchemyApiKey)
-	const ethWallet = new Wallet(request.pk)//todo
+	const ethWallet = new Wallet(request.pk)//todo temporary, mint should be on backend side
 	const signer = ethWallet.connect(provider)
 	const minter = await ImmutableXClient.build({
 		publicApiUrl: apiAddress,

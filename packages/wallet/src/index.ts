@@ -1,16 +1,26 @@
 import { Link, ProviderPreference } from "@imtbl/imx-sdk"
-import type { ImxWalletProviderName, RaribleImxEnv } from "./domain"
-import { RARIBLE_IMX_ENV_CONFIG } from "./config"
+import type {
+	ImxConnectResult,
+	ImxEnv,
+	ImxNetwork,
+	ImxNetworkConfig,
+	ImxWalletConnectionStatus,
+	ImxWalletProviderName,
+} from "./domain"
+import { IMX_ENV_CONFIG, IMX_NETWORK_CONFIG } from "./config"
 
 export class ImxWallet {
 	private address: string
 	private starkPublicKey: string
 	private ethNetwork: string
 	private providerPreference: string
-	private status: "connected" | "disconnected"
+	private status: ImxWalletConnectionStatus
 	public link: Link
 
-	constructor(private readonly env: RaribleImxEnv, private readonly provider?: ImxWalletProviderName) {
+	constructor(
+		private readonly env: ImxEnv,
+		private readonly provider?: ImxWalletProviderName,
+	) {
 		this.link = null as any
 		this.address = ""
 		this.starkPublicKey = ""
@@ -20,11 +30,11 @@ export class ImxWallet {
 		this.connect = this.connect.bind(this)
 		this.disconnect = this.disconnect.bind(this)
 		this.getConnectionData = this.getConnectionData.bind(this)
-		this.getConfig = this.getConfig.bind(this)
+		this.getNetworkConfig = this.getNetworkConfig.bind(this)
 	}
 
-	public async connect() {
-		this.link = new Link(this.getConfig().linkAddress)
+	public async connect(): Promise<ImxConnectResult> {
+		this.link = new Link(this.getNetworkConfig().linkAddress)
 		try {
 			const { address, ethNetwork, providerPreference, starkPublicKey } = await this.link.setup(
 				this.provider ? { providerPreference: ProviderPreference[this.provider] } : {},
@@ -63,7 +73,7 @@ export class ImxWallet {
 		}
 	}
 
-	public getConnectionData() {
+	public getConnectionData(): ImxConnectResult & { link: Link, status: ImxWalletConnectionStatus } {
 		return {
 			address: this.address,
 			starkPublicKey: this.starkPublicKey,
@@ -74,9 +84,10 @@ export class ImxWallet {
 		}
 	}
 
-	public getConfig() {
-		return { ...RARIBLE_IMX_ENV_CONFIG[this.env], env: this.env }
+	public getNetworkConfig(): ImxNetworkConfig & { env: ImxEnv } {
+		return { ...IMX_ENV_CONFIG[this.env], env: this.env }
 	}
 }
 
-export type { ImxEnv, RaribleImxEnv } from "./domain"
+export type { ImxNetwork, ImxEnv, ImxNetworkConfig }
+export { IMX_NETWORK_CONFIG, IMX_ENV_CONFIG }

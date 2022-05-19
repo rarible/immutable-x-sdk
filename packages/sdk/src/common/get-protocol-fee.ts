@@ -1,7 +1,7 @@
-import type { RaribleImxEnv } from "@rarible/immutable-wallet"
+import type { ImxEnv } from "@rarible/immutable-wallet"
 import type { ImxProtocolFee } from "../config/domain"
-import { RARIBLE_IMX_ENV_CONFIG } from "../config/env"
+import { IMX_ENV_CONFIG } from "../config/env"
 
-export function getProtocolFee(network: RaribleImxEnv): ImxProtocolFee {
-	return RARIBLE_IMX_ENV_CONFIG[network].protocolFee
+export function getProtocolFee(network: ImxEnv): ImxProtocolFee {
+	return IMX_ENV_CONFIG[network].protocolFee
 }

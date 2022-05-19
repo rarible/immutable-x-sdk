@@ -1,15 +1,16 @@
-import type { ImxEnvConfig, RaribleImxEnvConfig } from "./domain"
+import type { ImxEnv } from "./domain"
+import type { ImxNetwork, ImxNetworkConfig } from "./domain"
 
-export const IMX_CONFIG: ImxEnvConfig = {
+export const IMX_NETWORK_CONFIG: Record<ImxNetwork, ImxNetworkConfig> = {
 	mainnet: {
-		chainName: "mainnet",
+		network: "mainnet",
 		linkAddress: "https://link.x.immutable.com",
 		gasPrice: "4000000",
 		gasLimit: "7000000",
 		enableDebug: false,
 	},
 	ropsten: {
-		chainName: "ropsten",
+		network: "ropsten",
 		linkAddress: "https://link.ropsten.x.immutable.com",
 		gasPrice: "4000000",
 		gasLimit: "7000000",
@@ -17,20 +18,10 @@ export const IMX_CONFIG: ImxEnvConfig = {
 	},
 }
 
-export const RARIBLE_IMX_ENV_CONFIG: RaribleImxEnvConfig = {
-	e2e: {
-		...IMX_CONFIG.ropsten,
-	},
-	dev: {
-		...IMX_CONFIG.ropsten,
-	},
-	staging: {
-		...IMX_CONFIG.ropsten,
-	},
-	prod: {
-		...IMX_CONFIG.mainnet,
-	},
-	development: {
-		...IMX_CONFIG.ropsten,
-	},
+export const IMX_ENV_CONFIG: Record<ImxEnv, ImxNetworkConfig> = {
+	e2e: IMX_NETWORK_CONFIG.ropsten,
+	dev: IMX_NETWORK_CONFIG.ropsten,
+	staging: IMX_NETWORK_CONFIG.ropsten,
+	prod: IMX_NETWORK_CONFIG.mainnet,
+	development: IMX_NETWORK_CONFIG.ropsten,
 }
