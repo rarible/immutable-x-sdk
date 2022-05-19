@@ -1,6 +1,7 @@
 import type { Link } from "@imtbl/imx-sdk"
 import type { Address } from "@rarible/types"
 import type { BigNumberValue } from "@rarible/utils"
+import type { RaribleImxEnv } from "@rarible/immutable-wallet"
 import type { Erc721AssetRequest, TransferRequest, TransferResponse } from "./nft/domain"
 import type {
 	BuyRequest,
@@ -12,7 +13,7 @@ import type {
 } from "./order/domain"
 import type { BalanceRequestAssetType } from "./balance/balance"
 import type { MintRequest, MintResponse } from "./nft/mint"
-import type { ImxProtocolFee, RaribleImxEnv } from "./config/domain"
+import type { ImxProtocolFee } from "./config/domain"
 
 export type ImxFee = { recipient: string, percentage: number }
 

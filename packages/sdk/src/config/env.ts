@@ -64,7 +64,7 @@ export const RARIBLE_IMX_ENV_CONFIG: RaribleImxEnvConfig = {
 		...IMX_CONFIG.mainnet,
 		raribleApiAddress: "",
 	},
-	"dev-ropsten": {
+	development: {
 		...IMX_CONFIG.ropsten,
 		raribleApiAddress: "",
 		raribleEthereumApiUrl: "https://dev-ethereum-api.rarible.org",
