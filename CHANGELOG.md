@@ -3,6 +3,19 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.3](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.12...v0.0.3) (2022-05-19)
+
+
+### Bug Fixes
+
+* fix personalSign function ([1d7b174](https://github.com/rarible/immutable-x-sdk/commit/1d7b1744dad39de8a7bb6e2cc42e84dcece01116))
+* fix wallet class ([dc34102](https://github.com/rarible/immutable-x-sdk/commit/dc341029504eee67bc78491020460e2f5282538f))
+* remove check for ethereum connection from project ([0dfbe0f](https://github.com/rarible/immutable-x-sdk/commit/0dfbe0f2769d8832c73c6827500c53b896af8782))
+
+
+
+
+
 ## [0.0.3-alpha.12](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3-alpha.11...v0.0.3-alpha.12) (2022-04-12)
 
 

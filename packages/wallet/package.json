@@ -1,6 +1,6 @@
 {
   "name": "@rarible/immutable-wallet",
-  "version": "0.0.3-alpha.9",
+  "version": "0.0.3",
   "description": "Immutable wallet util",
   "repository": "https://github.com/rarible/immutable-x-sdk",
   "license": "MIT",
