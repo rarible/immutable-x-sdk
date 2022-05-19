@@ -10,7 +10,7 @@ export class ImxWallet {
 	private status: "connected" | "disconnected"
 	public link: Link
 
-	constructor(private env: RaribleImxEnv, private provider?: ImxWalletProviderName) {
+	constructor(private readonly env: RaribleImxEnv, private readonly provider?: ImxWalletProviderName) {
 		this.link = null as any
 		this.address = ""
 		this.starkPublicKey = ""
@@ -18,6 +18,9 @@ export class ImxWallet {
 		this.providerPreference = ""
 		this.status = "disconnected"
 		this.connect = this.connect.bind(this)
+		this.disconnect = this.disconnect.bind(this)
+		this.getConnectionData = this.getConnectionData.bind(this)
+		this.getConfig = this.getConfig.bind(this)
 	}
 
 	public async connect() {
