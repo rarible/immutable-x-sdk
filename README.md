@@ -1,19 +1,18 @@
-## Rarible ImmutableX SDK
+# Rarible ImmutableX SDK
 
-Rarible immutable sdk enables easily interaction with [ImmutableX](https://www.immutable.com/) layer 2 on Rarible
-Protocol.
+Rarible Immutable SDK enables easily interaction with [ImmutableX](https://www.immutable.com/) layer 2 on Rarible Protocol.
 
-### Installation
+## Installation
 
 ```shell
 yarn add @rarible/immutable-sdk @imtbl/imx-sdk @imtbl/imx-link-sdk
 ```
 
-### Usage
+## Usage
 
 SDK is written in TypeScript. You can use typings to explore SDK possibilities.
 
-### Initialisation
+### Initialization
 
 ```typescript
 import { createImxSdk } from "@rarible/immutable-sdk"
@@ -25,7 +24,7 @@ const web3Ethereum = new Web3Ethereum({ web3: web })
 const sdk = createImxSdk(web3Ethereum, "dev")
 ```
 
-- ethereum - metamask browser instance (window.ethereum)
+- ethereum — Metamask browser instance (window.ethereum)
 
 ### Create sell order
 
@@ -60,3 +59,17 @@ sdk.order.cancel({
 	orderId: "12345",
 })
 ```
+
+## Suggestions
+
+You are welcome to [suggest features](https://github.com/rarible/protocol/discussions) and [report bugs found](https://github.com/rarible/protocol/issues)!
+
+## Contributing
+
+The codebase is maintained using the "contributor workflow" where everyone without exception contributes patch proposals using "pull requests" (PRs). This facilitates social contribution, easy testing, and peer review.
+
+See more information on [CONTRIBUTING.md](https://github.com/rarible/protocol/blob/main/CONTRIBUTING.md).
+
+## License
+
+Rarible Immutable SDK is available under the [MIT License](LICENSE).
