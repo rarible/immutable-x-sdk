@@ -1,21 +1,22 @@
-import { ERC721TokenType } from "@imtbl/imx-link-types"
-import type { Link } from "@imtbl/imx-sdk"
+import { ERC721TokenType } from "@imtbl/imx-sdk"
+import type { Maybe } from "@rarible/types"
 import { ZERO_ADDRESS } from "@rarible/types"
-import type { PreparedMethod } from "../common/run-with-imx-auth"
+import type { ImxWallet } from "@rarible/immutable-wallet"
 import type { Erc721AssetRequest, TransferResponse } from "./domain"
 import { getTransferResponse } from "./common/get-tranfer-response"
 
 export async function burn(
-	link: Link,
-	preparedMethod: PreparedMethod,
+	wallet: Maybe<ImxWallet>,
 	request: Erc721AssetRequest,
 ): Promise<TransferResponse> {
+	if (wallet === undefined) {
+		throw new Error("Wallet undefined")
+	}
 	const { assetClass, tokenId, contract } = request
 	if (assetClass !== ERC721TokenType.ERC721) {
 		throw new Error("Unsupported assetClass")
 	}
-	const prepared = await preparedMethod(link.transfer)
-	const { result } = await prepared([{
+	const { result } = await wallet.getConnectionData().link.transfer([{
 		type: ERC721TokenType.ERC721,
 		tokenId: tokenId,
 		tokenAddress: contract,

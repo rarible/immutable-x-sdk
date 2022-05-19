@@ -2,14 +2,13 @@ import type { ImmutableMethodParams } from "@imtbl/imx-sdk"
 import { ImmutableXClient } from "@imtbl/imx-sdk"
 import type { Address, Maybe } from "@rarible/types"
 import { toAddress } from "@rarible/types"
-import type { NftCollectionControllerApi, Part } from "@rarible/ethereum-api-client"
-import type { Ethereum } from "@rarible/ethereum-provider"
+import type { Part } from "@rarible/ethereum-api-client"
+import { Configuration, NftCollectionControllerApi } from "@rarible/ethereum-api-client"
 import { AlchemyProvider } from "@ethersproject/providers"
 import { Wallet } from "@ethersproject/wallet"
-import type { ImxEnv } from "../config/domain"
+import type { ImxEnv, ImxWallet } from "@rarible/immutable-wallet"
 import { IMX_CONFIG } from "../config/env"
 import { convertFees } from "../common/convert-fees"
-import type { PreparedMethod } from "../common/run-with-imx-auth"
 import { getTokenId } from "./common/get-token-id"
 
 export type MintResponse = {
@@ -26,16 +25,13 @@ export type MintRequest = {
 }
 
 export async function mint(
-	ethereum: Maybe<Ethereum>,
-	network: ImxEnv,
-	prepareMethod: PreparedMethod,
-	nftCollectionApi: NftCollectionControllerApi,
+	wallet: Maybe<ImxWallet>,
 	request: MintRequest,
 ): Promise<MintResponse> {
-	if (ethereum === undefined) {
+	if (wallet === undefined) {
 		throw new Error("Wallet undefined")
 	}
-	const from = await ethereum.getFrom()
+	const { address, ethNetwork } = await wallet.getConnectionData()
 	const {
 		apiAddress,
 		alchemyApiKey,
@@ -43,11 +39,14 @@ export async function mint(
 		registrationAddress,
 		gasLimit,
 		gasPrice,
-	} = IMX_CONFIG[network]
+		raribleEthereumApiUrl,
+	} = IMX_CONFIG[ethNetwork as ImxEnv]
+	const raribleEthereumApiConfig = new Configuration({ basePath: raribleEthereumApiUrl })
+	const nftCollectionApi = new NftCollectionControllerApi(raribleEthereumApiConfig)
 	//todo move to root
-	const provider = new AlchemyProvider(network, alchemyApiKey)
-	const wallet = new Wallet(request.pk)//todo
-	const signer = wallet.connect(provider)
+	const provider = new AlchemyProvider(ethNetwork, alchemyApiKey)
+	const ethWallet = new Wallet(request.pk)//todo
+	const signer = ethWallet.connect(provider)
 	const minter = await ImmutableXClient.build({
 		publicApiUrl: apiAddress,
 		signer,
@@ -58,12 +57,12 @@ export async function mint(
 		enableDebug: false,
 	})
 
-	let tokenId = await getTokenId(nftCollectionApi, request.collection, toAddress(from))
+	let tokenId = await getTokenId(nftCollectionApi, request.collection, toAddress(address))
 
 	const payload: ImmutableMethodParams.ImmutableOffchainMintV2ParamsTS = [
 		{
 			users: [{
-				etherKey: from,
+				etherKey: address,
 				tokens: [{
 					id: tokenId.tokenId,
 					blueprint: request.metaUrl.toLowerCase() + tokenId.tokenId,
@@ -73,8 +72,7 @@ export async function mint(
 			...request.royalties.length ? { royalties: convertFees(request.royalties) } : {},
 		},
 	]
-	const prepared = await prepareMethod(minter.mintV2)
-	const { results } = await prepared(payload)
+	const { results } = await minter.mintV2(payload)
 
 	const { token_id: tokenIdResponse, contract_address: contractAddress, tx_id: txId } = results[0]
 	return { tokenId: tokenIdResponse, contractAddress, txId: txId.toString() }

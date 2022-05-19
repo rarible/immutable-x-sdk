@@ -1,6 +1,6 @@
-import type { Link } from "@imtbl/imx-sdk"
+import type { Maybe } from "@rarible/types"
+import type { ImxWallet } from "@rarible/immutable-wallet"
 import { convertFees } from "../common/convert-fees"
-import type { PreparedMethod } from "../common/run-with-imx-auth"
 import type {
 	BuyRequest,
 	BuyResponse,
@@ -12,15 +12,15 @@ import type {
 } from "./domain"
 
 export async function sell(
-	link: Link,
-	preparedMethod: PreparedMethod,
+	wallet: Maybe<ImxWallet>,
 	request: SellRequest,
 ): Promise<SellResponse> {
-
-	const prepared = await preparedMethod(link.sell)
+	if (wallet === undefined) {
+		throw new Error("Wallet undefined")
+	}
 	const { makeAssetType: { tokenId, contract }, takeAssetType, amount, payouts, originFees } = request
 	const currencyContract = takeAssetType.assetClass === "ERC20" ? takeAssetType.contract : undefined
-	return await prepared({
+	return await wallet.getConnectionData().link.sell({
 		tokenId,
 		tokenAddress: contract,
 		fees: convertFees([...payouts, ...originFees]),
@@ -30,28 +30,28 @@ export async function sell(
 }
 
 export async function buy(
-	link: Link,
-	prepareMethod: PreparedMethod,
+	wallet: Maybe<ImxWallet>,
 	request: BuyRequest,
 ): Promise<BuyResponse> {
-
-	const prepared = await prepareMethod(link.buy)
+	if (wallet === undefined) {
+		throw new Error("Wallet undefined")
+	}
 	const { orderId, fee } = request
-	return prepared({
+	return wallet.getConnectionData().link.buy({
 		orderIds: [orderId],
 		fees: convertFees(fee),
 	})
 }
 
 export async function cancel(
-	link: Link,
-	preparedMethod: PreparedMethod,
+	wallet: Maybe<ImxWallet>,
 	request: CancelOrderRequest,
 ): Promise<CancelOrderResponse> {
-
-	const prepared = await preparedMethod(link.cancel)
+	if (wallet === undefined) {
+		throw new Error("Wallet undefined")
+	}
 	const { orderId } = request
-	const result = await prepared({
+	const result = await wallet.getConnectionData().link.cancel({
 		orderId,
 	})
 	return {
