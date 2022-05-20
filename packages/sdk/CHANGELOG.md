@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.6](https://github.com/rarible/immutable-x-sdk/compare/v0.0.5...v0.0.6) (2022-05-20)
+
+
+### Bug Fixes
+
+* wallet package ([1d7e3c4](https://github.com/rarible/immutable-x-sdk/commit/1d7e3c475d0a74ae83cfc2b3836e7ddf8b8cc220))
+
+
+
+
+
 ## [0.0.5](https://github.com/rarible/immutable-x-sdk/compare/v0.0.4...v0.0.5) (2022-05-20)
 
 **Note:** Version bump only for package @rarible/immutable-sdk
