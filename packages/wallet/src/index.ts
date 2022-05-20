@@ -9,6 +9,13 @@ import type {
 } from "./domain"
 import { IMX_ENV_CONFIG, IMX_NETWORK_CONFIG } from "./config"
 
+const localStorageKeys = {
+	starkKey: "IMX_STARK_KEY",
+	address: "IMX_ADDRESS",
+	provider: "IMX_PROVIDER",
+	network: "IMX_ETH_NETWORK",
+}
+
 export class ImxWallet {
 	private address: string
 	private starkPublicKey: string
@@ -22,11 +29,11 @@ export class ImxWallet {
 		private readonly provider?: ImxWalletProviderName,
 	) {
 		this.link = null as any
-		this.address = ""
-		this.starkPublicKey = ""
-		this.ethNetwork = ""
-		this.providerPreference = ""
-		this.status = "disconnected"
+		this.address = localStorage.getItem(localStorageKeys.address) || ""
+		this.starkPublicKey = localStorage.getItem(localStorageKeys.starkKey) || ""
+		this.ethNetwork = localStorage.getItem(localStorageKeys.network) || ""
+		this.providerPreference = localStorage.getItem(localStorageKeys.provider) || ""
+		this.status = this.address && this.starkPublicKey ? "connected" : "disconnected"
 		this.connect = this.connect.bind(this)
 		this.disconnect = this.disconnect.bind(this)
 		this.getConnectionData = this.getConnectionData.bind(this)
@@ -45,6 +52,10 @@ export class ImxWallet {
 				this.starkPublicKey = starkPublicKey
 				this.ethNetwork = ethNetwork
 				this.providerPreference = providerPreference
+				localStorage.setItem(localStorageKeys.address, address)
+				localStorage.setItem(localStorageKeys.starkKey, starkPublicKey)
+				localStorage.setItem(localStorageKeys.network, ethNetwork)
+				localStorage.setItem(localStorageKeys.provider, providerPreference)
 				return { address, starkPublicKey, ethNetwork, providerPreference }
 			} else {
 				throw new Error("Connection failure! there is no address or starkAddress in response")
@@ -60,7 +71,8 @@ export class ImxWallet {
 		this.starkPublicKey = ""
 		this.ethNetwork = ""
 		this.providerPreference = ""
-
+		localStorage.setItem(localStorageKeys.address, "")
+		localStorage.setItem(localStorageKeys.starkKey, "")
 		this.status = "disconnected"
 
 		if (localStorage) {
