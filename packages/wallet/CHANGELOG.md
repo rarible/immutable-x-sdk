@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.0.5](https://github.com/rarible/immutable-x-sdk/compare/v0.0.4...v0.0.5) (2022-05-20)
+
+
+### Bug Fixes
+
+* add localstorage handler to wallet ([51e3b69](https://github.com/rarible/immutable-x-sdk/commit/51e3b693bd25d1e29d07f3ca896002bdf9921d07))
+
+
+
+
+
 ## [0.0.4](https://github.com/rarible/immutable-x-sdk/compare/v0.0.3...v0.0.4) (2022-05-19)
 
 
