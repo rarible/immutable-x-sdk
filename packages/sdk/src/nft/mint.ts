@@ -6,7 +6,7 @@ import type { Part } from "@rarible/ethereum-api-client"
 import { Configuration, NftCollectionControllerApi } from "@rarible/ethereum-api-client"
 import { AlchemyProvider } from "@ethersproject/providers"
 import { Wallet } from "@ethersproject/wallet"
-import type { ImxEnv, ImxWallet } from "@rarible/immutable-wallet"
+import type { ImxWallet } from "@rarible/immutable-wallet"
 import { IMX_ENV_CONFIG } from "../config/env"
 import { convertFees } from "../common/convert-fees"
 import { getTokenId } from "./common/get-token-id"
@@ -40,7 +40,7 @@ export async function mint(
 		gasLimit,
 		gasPrice,
 		raribleEthereumApiUrl,
-	} = IMX_ENV_CONFIG[ethNetwork as ImxEnv]
+	} = IMX_ENV_CONFIG[wallet.getNetworkConfig().env]
 	const raribleEthereumApiConfig = new Configuration({ basePath: raribleEthereumApiUrl })
 	const nftCollectionApi = new NftCollectionControllerApi(raribleEthereumApiConfig)
 

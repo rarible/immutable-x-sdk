@@ -28,7 +28,7 @@ export class ImxWallet {
 		private readonly env: ImxEnv,
 		private readonly provider?: ImxWalletProviderName,
 	) {
-		this.link = null as any
+		this.link = new Link(this.getNetworkConfig().linkAddress)
 		this.address = localStorage.getItem(localStorageKeys.address) || ""
 		this.starkPublicKey = localStorage.getItem(localStorageKeys.starkKey) || ""
 		this.ethNetwork = localStorage.getItem(localStorageKeys.network) || ""
@@ -41,7 +41,6 @@ export class ImxWallet {
 	}
 
 	public async connect(): Promise<ImxConnectResult> {
-		this.link = new Link(this.getNetworkConfig().linkAddress)
 		try {
 			const { address, ethNetwork, providerPreference, starkPublicKey } = await this.link.setup(
 				this.provider ? { providerPreference: ProviderPreference[this.provider] } : {},
